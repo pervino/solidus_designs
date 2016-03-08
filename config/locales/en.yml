@@ -1,0 +1,29 @@
+---
+en:
+  activerecord:
+    models:
+      spree/product_customization_configuration:
+        one: "Customization Configuration"
+        other: "Customization Configurations"
+  spree:
+    admin:
+      customization_option_configurations:
+        customization_option_configuration: "Customization Configuration"
+        gift_card_originator: "Gift Card - Order #%{order_number}"
+        redeem: "Redeem"
+        redeem_gift_card: "Redeem Gift Card"
+        redeemed_gift_card: "Redeemed Gift Card"
+        redemption_code: "Redemption Code"
+        errors:
+          not_found: "Gift card was not found"
+          please_try_again: "Please try again"
+          unable_to_redeem_gift_card: "Unable to redeem gift card"
+
+    back_to_design_configurations_list: "Back to Design Configurations"
+    back_to_design_configuration: "Back to Design Configuration"
+    edit_design_configuration: "Edit Design Configuration"
+    new_design_configuration: "New Design Configuration"
+
+    back_to_design_options_list: "Back to Design Options"
+    edit_design_option: "Edit Design Option"
+    new_design_option: "Edit Design Option"

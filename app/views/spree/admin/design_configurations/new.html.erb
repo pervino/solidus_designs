@@ -1,0 +1,21 @@
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Design Configurations'} %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => {:target => @design_configuration} %>
+
+<% content_for :page_title do %>
+    <%= Spree.t(:new_design_configuration) %>
+<% end %>
+
+<% content_for :page_actions do %>
+    <li>
+      <%= button_link_to Spree.t(:back_to_design_configurations_list), admin_product_design_configurations_url(@product), :icon => 'arrow-left' %>
+    </li>
+<% end %>
+
+<%= form_for [:admin, @product, @design_configuration] do |f| %>
+    <fieldset class="no-border-top">
+      <%= render :partial => 'form', :locals => {:f => f} %>
+      <div class="clear"></div>
+      <%= render :partial => 'spree/admin/shared/new_resource_links' %>
+    </fieldset>
+<% end %>

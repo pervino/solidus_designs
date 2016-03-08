@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="alpha five columns">
+    <%= f.field_container :name do %>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+    <% end %>
+  </div>
+  <div class="omega five columns">
+    <%= f.field_container :size do %>
+        <%= f.label :size %>
+        <%= f.select :size, Spree::Designs::Config.sizes.collect { |s| [s.to_s.titlecase, s] }, {}, class: 'select2 fullwidth' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="alpha two columns">
+    <%= f.field_container :required do %>
+        <%= f.label :required %>
+        <%= f.check_box :required, class: 'checkbox' %>
+    <% end %>
+  </div>
+  <div class="four columns">
+    <%= f.field_container :virtual_proofable do %>
+        <%= f.label :virtual_proofable %>
+        <%= f.check_box :virtual_proofable, class: 'checkbox' %>
+    <% end %>
+  </div>
+</div>
+
+<%= f.fields_for :meta, OpenStruct.new(f.object.meta) do |ff| %>
+    <div class="row">
+      <div class="alpha eight columns">
+        <%= ff.label :description %>
+        <%= ff.text_area :description, class: 'fullwidth', rows: 5 %>
+      </div>
+    </div>
+<% end %>

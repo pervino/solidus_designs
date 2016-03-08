@@ -1,0 +1,27 @@
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Design Configurations'} %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => {:target => @design_option} %>
+
+<% content_for :page_title do %>
+    <%= Spree.t(:edit_design_option) %>
+<% end %>
+
+<% content_for :page_actions do %>
+    <li>
+      <%= button_link_to Spree.t(:images), admin_design_option_images_url(@design_option), :class => 'button', icon: 'image' %>
+    </li>
+    <li>
+      <%= button_link_to Spree.t(:back_to_design_configuration), edit_admin_product_design_configuration_url(@design_configuration.product, @design_configuration), :icon => 'arrow-left' %>
+    </li>
+<% end %>
+
+<%= form_for [:admin, @design_configuration, @design_option] do |f| %>
+    <fieldset class="no-border-top">
+      <%= render :partial => 'form', :locals => {:f => f} %>
+      <div class="clear"></div>
+      <div class="form-buttons filter-actions actions" data-hook="buttons">
+        <%= button Spree.t('actions.update'), 'refresh' %>
+        <%= button_link_to Spree.t('actions.cancel'), edit_admin_product_design_configuration_url(@design_configuration.product, @design_configuration), :icon => 'remove' %>
+      </div>
+    </fieldset>
+<% end %>

@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="alpha four columns">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="omega four columns">
+    <%= f.label :medium %>
+    <%= f.select :medium, Spree::Designs::Config.mediums.collect { |s| [s.to_s.titlecase, s] }, {}, class: 'select2 fullwidth' %>
+  </div>
+</div>
+
+<%= f.fields_for :meta, OpenStruct.new(f.object.meta) do |ff| %>
+    <div class="row">
+      <div class="alpha eight columns">
+        <%= ff.label :description %>
+        <%= ff.text_area :description, class: 'fullwidth', rows: 5 %>
+      </div>
+    </div>
+<% end %>
+
+<div class="clear"></div>
+
+<%= render 'spree/admin/shared/calculator_fields', :f => f %>

@@ -1,0 +1,47 @@
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Design Configurations'} %>
+
+<% content_for :page_actions do %>
+    <ul class="actions inline-menu">
+      <% if can?(:create, Spree::DesignConfiguration) %>
+          <li>
+            <%= button_link_to Spree.t(:new_design_configuration), new_object_url(product: @product), :icon => 'plus' %>
+          </li>
+      <% end %>
+    </ul>
+<% end %>
+
+<% if @design_configurations.any? %>
+    <table class="index" id='listing_design_configurations' data-hook>
+      <colgroup>
+        <col style="width: 85%"/>
+        <col style="width: 15%"/>
+      </colgroup>
+      <thead>
+      <tr data-hook="customization_header">
+        <th><%= Spree::DesignConfiguration.human_attribute_name(:name) %></th>
+        <th class="actions"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @design_configurations.each do |configuration| %>
+          <tr id="<%= spree_dom_id configuration %>" data-hook="customization_row" class="<%= cycle('odd', 'even') %>">
+            <td class="align-center"><%= configuration.name %></td>
+            <td class="actions">
+              <% if can?(:update, configuration) %>
+                  <%= link_to_edit configuration, :no_text => true %>
+              <% end %>
+              <% if can?(:destroy, configuration) %>
+                  <%= link_to_delete configuration, url: @delete_url, :no_text => true %>
+              <% end %>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <div class="alpha twelve columns no-objects-found">
+      <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/design_configuration')) %>
+      <% if can?(:create, Spree::DesignConfiguration) %>
+          <%= link_to Spree.t(:add_one), new_object_url(product: @product) %>!
+      <% end %>
+    </div>
+<% end %>
