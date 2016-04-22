@@ -1,4 +1,5 @@
 require 'solidus_core'
+require 'acts-as-taggable-on'
 
 module Spree
   module Designs
