@@ -32,7 +32,8 @@ class MigrateCustomizationConfigurationsToDesignConfigurations < ActiveRecord::M
 
         design_configuration = product.design_configurations.create(
             name: 'Front of bottle',
-            size: sizeMap[customization_configuration.preferences[:design_size]]
+            size: sizeMap[customization_configuration.preferences[:design_size]],
+            virtual_proofable: product.dynamic_imaging_flag
         )
         design_configuration.save!
 
@@ -49,6 +50,7 @@ class MigrateCustomizationConfigurationsToDesignConfigurations < ActiveRecord::M
       end
     end
 
+    remove_column :spree_products, :dynamic_imaging_flag
     drop_table :spree_customization_configurations
   end
 
