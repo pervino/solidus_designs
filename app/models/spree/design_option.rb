@@ -6,6 +6,7 @@ module Spree
     has_one :product, through: :design_configuration
     has_many :images, -> { order(:position) }, as: :viewable, dependent: :destroy, class_name: "Spree::Image"
 
+    before_validation :ensure_action_has_calculator
     validates :medium, presence: true
 
 
@@ -33,6 +34,11 @@ module Spree
     end
 
     private
+
+    def ensure_action_has_calculator
+      return if calculator
+      self.calculator = Calculator::FlatRatePerItem.new
+    end
 
     def adjustment_label(amount = nil)
       "Personalization"
