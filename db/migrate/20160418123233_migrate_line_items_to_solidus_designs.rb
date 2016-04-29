@@ -9,14 +9,14 @@ class MigrateLineItemsToSolidusDesigns < ActiveRecord::Migration
         customization = line_item.customizations.build(source_id: line_item.design_id, source_type: "Spree::Design")
 
         unless line_item.variant.product.design_configurations.any?
-          line_item.variant.product.design_configurations.create(size: design.size, name: 'Front of Bottle')
+          next unless line_item.variant.product.design_configurations.create(size: design.size, name: 'Front of Bottle').persisted?
           puts "Creating new design configuration for ##{line_item.variant.name}"
         end
 
-        customization.configuration = line_item.variant.product.design_configuration.first
+        customization.configuration = line_item.variant.product.design_configurations.first
 
         unless customization.configuration.design_options.find_by(medium: design.medium)
-          customization.configuration.design_options.create(name: design.medium, medium: design.medium)
+          next unless customization.configuration.design_options.create(name: design.medium, medium: design.medium).persisted?
           puts "Creating new design option for line item ##{line_item.id}"
         end
 
