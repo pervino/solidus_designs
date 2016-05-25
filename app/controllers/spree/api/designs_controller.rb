@@ -1,9 +1,7 @@
 module Spree
   module Api
     class DesignsController < Spree::Api::BaseController
-
       before_action :find_design, only: [:update, :destroy, :show]
-      before_action :authorize_user, only: [:create, :update]
 
       def create
         authorize! :create, Design
@@ -13,13 +11,12 @@ module Spree
         if params[:design][:is_template]
           set_as_template
         else
-          set_user
+          associate_user
         end
 
         if @design.save
           # Clear the designs template as the selected template
-          (session[:current_template] ||= {})[@design.design_type.to_sym] = nil
-
+          (session[:current_template] ||= {})[@design.size.to_sym] = nil
           respond_with(@design, status: 201, default_template: :show)
         else
           invalid_resource!(@design)
@@ -27,7 +24,7 @@ module Spree
       end
 
       def update
-        authorize! :update, Design
+        authorize! :update, @design
 
         if params[:force]
           @design.skip_line_item_touch = params[:force]
@@ -41,13 +38,9 @@ module Spree
       end
 
       def destroy
-        authorize! :destroy, Design
-
-        if @design.destroy
-          render :text => '{}', :status => :ok
-        else
-          invalid_resource!(@design)
-        end
+        authorize! :destroy, @designs
+        @design.destroy
+        respond_with(@designs, status: 204)
       end
 
       def index
@@ -85,24 +78,28 @@ module Spree
         @design.user_id = nil
       end
 
-      def set_user
-        if params[:design][:user_id].present? && (user = Spree::User.find(params[:design][:user_id])).present?
-          @design.user = user
-        elsif current_api_user && current_api_user.persisted?
+      def associate_user
+        return if params[:design][:user_id]
+
+        if current_api_user && current_api_user.persisted?
           @design.user = current_api_user
         else
           @design.guest_token = cookies.signed[:guest_token]
         end
       end
 
-      def authorize_user
-        params[:design].delete :user_id unless can? :admin, current_api_user
-      end
-
       def permitted_params
-        params.require(:design).permit :medium, :size, :markup, :name, :template_id, :risky, *(Spree::ItemDesign::Config.images.map { |s| s.to_sym })
+        attributes = can?(:admin, Spree::Design) ? admin_permitted_attributes : permitted_attributes
+        params.require(:design).permit *attributes
       end
 
+      def permitted_attributes
+        [:medium, :size, :markup, :render_url, :original_template_id]
+      end
+
+      def admin_permitted_attributes
+        permitted_attributes + [:name, :user_id]
+      end
     end
   end
 end

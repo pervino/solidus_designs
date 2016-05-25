@@ -12,6 +12,7 @@ module Spree
     validates_attachment_content_type :rendering, content_type: /\Aimage\/.*\Z/
 
     validates :medium, presence: true
+    validates :render_url, presence: true
 
     self.whitelisted_ransackable_attributes = ['user_id', 'medium', 'size', 'guest_token', 'template_id']
   end
