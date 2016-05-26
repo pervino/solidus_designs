@@ -61,7 +61,7 @@ module Spree
           params[:q][:guest_token_eq] = cookies.signed[:guest_token]
         end
 
-        @designs = Spree::Design.ransack(params[:q]).result
+        @designs = Spree::Design.includes(:template).ransack(params[:q]).result
         @designs = @designs.page(params[:page]).per(params[:per_page])
         respond_with(@designs, default_template: 'index')
       end

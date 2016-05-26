@@ -1,6 +1,6 @@
 module Spree
   class Designs::AppConfiguration < Preferences::Configuration
-    preference :tags, :array, default: [:holidays, :occasions, :recipients]
+    preference :tags, :array, default: [:holidays, :occasions, :recipients, :colors]
 
     preference :sizes, :array, default: [:bordeaux, :square, :teardrop]
 

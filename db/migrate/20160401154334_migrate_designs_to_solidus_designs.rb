@@ -8,7 +8,6 @@ class MigrateDesignsToSolidusDesigns < ActiveRecord::Migration
 
     rename_column :spree_designs, :design_type, :medium
     rename_column :spree_designs, :design_size, :size
-    rename_column :spree_designs, :template_id, :origin_template_id
 
     remove_column :spree_designs, :old_small
     remove_column :spree_designs, :old_medium
@@ -20,7 +19,7 @@ class MigrateDesignsToSolidusDesigns < ActiveRecord::Migration
     remove_column :spree_designs, :risky
 
     add_column :spree_designs, :type, :string
-    add_column :spree_designs, :template_id, :integer
+    add_column :spree_designs, :source_id, :integer
 
 
     rename_column :spree_designs, :markup, :old_markup
@@ -41,9 +40,8 @@ class MigrateDesignsToSolidusDesigns < ActiveRecord::Migration
     remove_column :spree_designs, :old_markup
     remove_column :spree_designs, :images
 
-
-    Spree::Design.where(is_template: true).find_each do |design|
-      design.update_columns(template_id: design.origin_template_id, origin_template_id: nil)
+    Spree::Design.where(is_template: true).where("template_id IS NOT NULL").find_each do |design|
+      Spree::TemplateDesign.create(template: design.template, design: design)
     end
 
     remove_column :spree_designs, :is_template

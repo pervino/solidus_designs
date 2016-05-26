@@ -13,10 +13,12 @@ Spree::Core::Engine.routes.draw do
     end
   end
 
-  namespace :api, defaults: {format: 'json'} do
+  namespace :api, defaults: { format: 'json' } do
     resources :templates, only: [:show, :index] do
       get :tags, on: :collection
     end
+
+    resources :template_designs, only: [:index]
 
     # todo refactor into designs resources routes
     get 'designs/user/:user_id', to: "designs#user"
