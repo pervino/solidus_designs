@@ -23,6 +23,8 @@ module Spree
     self.whitelisted_ransackable_associations = ['template']
 
     def render_url=(url)
+      self.rendering = nil
+
       attach_rendering
       super(url)
     end
