@@ -94,7 +94,7 @@ module Spree
       end
 
       def permitted_attributes
-        [:medium, :size, :markup, :render_url, :original_template_id]
+        Spree::PermittedAttributes.design_attributes
       end
 
       def admin_permitted_attributes

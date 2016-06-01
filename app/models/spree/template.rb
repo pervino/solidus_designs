@@ -6,6 +6,6 @@ module Spree
     has_many :template_designs
     has_many :designs, through: :template_designs
 
-    self.whitelisted_ransackable_attributes = ['medium', 'display']
+    self.whitelisted_ransackable_attributes = ['medium', 'display', 'popularity']
   end
 end

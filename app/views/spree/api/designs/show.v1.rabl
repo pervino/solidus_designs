@@ -1,3 +1,3 @@
 object @design
 cache [root_object]
-attributes *design_attributes
+extends "spree/api/designs/design"
