@@ -4,4 +4,4 @@ child(@templates => :templates) do
 end
 node(:count) { @templates.count }
 node(:current_page) { params[:page] || 1 }
-node(:pages) { @templates.num_pages }
+node(:pages) { @templates.total_pages }
