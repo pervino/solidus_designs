@@ -11,13 +11,13 @@ module SolidusDesigns
 
     initializer "spree.customization.register.calculators", after: "spree.register.calculators" do |app|
       app.config.spree.calculators.add_class('design')
-      app.config.spree.calculators.design = [
+      app.config.spree.calculators.design = %w[
           Spree::Calculator::FlatRatePerItem
       ]
     end
 
     initializer "spree.design.register.customization_sources", after: 'spree.customization.register.customization_sources' do |app|
-      app.config.spree.customization.source_configurations << Spree::DesignConfiguration
+      app.config.spree.customization.source_configurations << "Spree::DesignConfiguration"
     end
 
     def self.activate
