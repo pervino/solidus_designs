@@ -1,2 +1,2 @@
 cache [root_object]
-attributes *template_attributes
+attributes :id, :name, :medium, :popularity

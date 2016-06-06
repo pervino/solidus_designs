@@ -1,5 +1,5 @@
 cache [root_object]
-attributes *design_attributes
+attributes :id, :size, :medium, :template_id, :markup, :images, :user_id
 
 node :rendering do |design|
   {
