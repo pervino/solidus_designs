@@ -21,7 +21,6 @@ class MigrateDesignsToSolidusDesigns < ActiveRecord::Migration
     add_column :spree_designs, :type, :string
     add_column :spree_designs, :source_id, :integer
 
-
     rename_column :spree_designs, :markup, :old_markup
     add_column :spree_designs, :markup, :text
     add_column :spree_designs, :render_url, :string
@@ -33,7 +32,10 @@ class MigrateDesignsToSolidusDesigns < ActiveRecord::Migration
             'wide' => 'teardrop',
             'square' => 'square'
         }
-        design.update_columns(render_url: design.images["large"], markup: YAML::load(design.old_markup), size: sizeMap[design.size])
+
+        design.update_columns(render_url: design.images["large"],
+                              markup: YAML::load(design.old_markup),
+                              size: sizeMap[design.size])
       end
     end
 
