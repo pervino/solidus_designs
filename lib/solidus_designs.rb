@@ -9,4 +9,4 @@ module Spree
   end
 end
 
-require 'solidus_designs/engine'
+require 'spree/designs/engine'
