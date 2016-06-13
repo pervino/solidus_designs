@@ -12,7 +12,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_designs'
-  s.version     = '0.1.8'
+  s.version     = '0.1.9'
   s.summary     = 'Extends Spree to include customizations for line items'
   s.description = 'Provides customization options to line items'
   s.required_ruby_version = '>= 2.1.0'
