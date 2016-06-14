@@ -2,11 +2,11 @@ module Spree
   class Design < Spree::Base
     acts_as_paranoid
 
+    include Spree::Customization::Article
+
     belongs_to :user, inverse_of: :designs
     belongs_to :template, -> { with_deleted }, touch: true
     belongs_to :source, -> { with_deleted }, class_name: "Spree::Design"
-
-    include Spree::Customization::Source
 
     after_create :attach_rendering
 

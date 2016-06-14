@@ -1,6 +1,6 @@
 module Spree
   class DesignOption < Spree::Base
-    include Spree::Customization::Option
+    include Spree::Customization::Source
 
     belongs_to :design_configuration
     has_one :product, through: :design_configuration
