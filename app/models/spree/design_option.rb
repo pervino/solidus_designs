@@ -10,7 +10,6 @@ module Spree
     validates :medium, presence: true
 
 
-    # Creates necessary tax adjustments for the order.
     def adjust(item)
       amount = compute_amount(item)
       return if amount == 0
@@ -41,7 +40,7 @@ module Spree
     end
 
     def adjustment_label(amount = nil)
-      "Personalization"
+      label || "Personalization"
     end
   end
 end

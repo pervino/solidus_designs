@@ -4,6 +4,7 @@ class CreateSpreeDesignOptions < ActiveRecord::Migration
       enable_extension 'hstore'
 
       t.string :name
+      t.string :label
       t.hstore :meta, default: {}
 
       t.string :medium

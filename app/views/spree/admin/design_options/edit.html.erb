@@ -1,6 +1,6 @@
-<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Design Configurations'} %>
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Design Configurations' } %>
 
-<%= render :partial => 'spree/shared/error_messages', :locals => {:target => @design_option} %>
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @design_option } %>
 
 <% content_for :page_title do %>
     <%= Spree.t(:edit_design_option) %>
@@ -17,7 +17,7 @@
 
 <%= form_for [:admin, @design_configuration, @design_option] do |f| %>
     <fieldset class="no-border-top">
-      <%= render :partial => 'form', :locals => {:f => f} %>
+      <%= render :partial => 'form', :locals => { :f => f } %>
       <div class="clear"></div>
       <div class="form-buttons filter-actions actions" data-hook="buttons">
         <%= button Spree.t('actions.update'), 'refresh' %>
@@ -25,3 +25,22 @@
       </div>
     </fieldset>
 <% end %>
+
+<div>
+  <table>
+    <tr>
+      <td>
+        <b>Name</b>
+      </td>
+      <td>
+        Appears under the "Select a Customization" dropdown
+      </td>
+      <td>
+        <b>Label</b>
+      </td>
+      <td>
+        Used to label the associated charge under in the order summary
+      </td>
+    </tr>
+  </table>
+</div>
