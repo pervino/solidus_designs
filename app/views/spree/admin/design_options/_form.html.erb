@@ -1,22 +1,54 @@
-<div class="row">
-  <div class="alpha four columns">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
+<div class="alpha eight columns">
+  <div class="row">
+    <div class="alpha four columns">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="omega four columns">
+      <%= f.label :medium %>
+      <%= f.select :medium, Spree::Designs::Config.mediums.collect { |s| [s.to_s.titlecase, s] }, {}, class: 'select2 fullwidth' %>
+    </div>
   </div>
-  <div class="omega four columns">
-    <%= f.label :medium %>
-    <%= f.select :medium, Spree::Designs::Config.mediums.collect { |s| [s.to_s.titlecase, s] }, {}, class: 'select2 fullwidth' %>
-  </div>
+
+  <%= f.fields_for :meta, OpenStruct.new(f.object.meta) do |ff| %>
+      <div class="row">
+        <div class="alpha eight columns">
+          <%= ff.label :description %>
+          <%= ff.text_area :description, class: 'fullwidth', rows: 5 %>
+        </div>
+      </div>
+  <% end %>
 </div>
 
-<%= f.fields_for :meta, OpenStruct.new(f.object.meta) do |ff| %>
-    <div class="row">
-      <div class="alpha eight columns">
-        <%= ff.label :description %>
-        <%= ff.text_area :description, class: 'fullwidth', rows: 5 %>
-      </div>
-    </div>
-<% end %>
+<div class="omega offset-by-one eight columns">
+  <table style="margin-top: 16px;">
+    <thead>
+    <tr>
+      <th>Key</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <b>Name</b>
+      </td>
+      <td>
+        Appears under the "Select a Customization" dropdown
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Label</b>
+      </td>
+      <td>
+        Used to label the associated charge under in the order summary
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
 
 <div class="clear"></div>
 

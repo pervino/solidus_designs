@@ -3,7 +3,9 @@
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @design_option } %>
 
 <% content_for :page_title do %>
-    <%= Spree.t(:edit_design_option) %>
+    <br/>
+    <span style="margin-left: 10px">Design -</span>
+    Configurations / <%= @design_configuration.name %> / Options / <%= @design_option.name %>
 <% end %>
 
 <% content_for :page_actions do %>
@@ -25,22 +27,3 @@
       </div>
     </fieldset>
 <% end %>
-
-<div>
-  <table>
-    <tr>
-      <td>
-        <b>Name</b>
-      </td>
-      <td>
-        Appears under the "Select a Customization" dropdown
-      </td>
-      <td>
-        <b>Label</b>
-      </td>
-      <td>
-        Used to label the associated charge under in the order summary
-      </td>
-    </tr>
-  </table>
-</div>

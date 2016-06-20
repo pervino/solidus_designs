@@ -1,20 +1,30 @@
-<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Design Configurations'} %>
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Design Configurations' } %>
 
-<%= render :partial => 'spree/shared/error_messages', :locals => {:target => @image} %>
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @design_option_image } %>
+
+<% content_for :page_title do %>
+    <br/>
+    <span style="margin-left: 10px">Design -</span>
+    Configurations / <%= @design_option.design_configuration.name %> / Options / <%= @design_option.name %> / Images
+<% end %>
 
 <% content_for :page_actions do %>
     <li><%= button_link_to Spree.t(:back_to_images_list), admin_design_option_images_url(@design_option), :icon => 'arrow-left' %></li>
 <% end %>
 
-<%= form_for [:admin, @design_option, @image], :html => {:multipart => true} do |f| %>
+<%= form_for [:admin, @design_option, @design_option_image],
+             url: admin_design_option_image_url(@design_option, @design_option_image),
+             html: { multipart: true } do |f| %>
+
     <fieldset data-hook="edit_image">
-      <legend align="center"><%= @image.attachment_file_name %></legend>
+      <legend align="center"><%= @design_option_image.attachment_file_name %></legend>
+
       <div data-hook="thumbnail" class="field alpha three columns align-center">
         <%= f.label Spree.t(:thumbnail) %><br>
-        <%= link_to image_tag(@image.attachment.url(:small)), @image.attachment.url(:product) %>
+        <%= link_to image_tag(@design_option_image.attachment.url(:small)), @design_option_image.attachment.url(:medium) %>
       </div>
       <div class="nine columns omega">
-        <%= render :partial => 'form', :locals => {:f => f} %>
+        <%= render :partial => 'form', :locals => { :f => f } %>
       </div>
       <div class="clear"></div>
       <div class="form-buttons filter-actions actions" data-hook="buttons">

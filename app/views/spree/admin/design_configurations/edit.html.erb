@@ -1,31 +1,28 @@
-<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Design Configurations'} %>
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Design Configurations' } %>
 
-<%= render :partial => 'spree/shared/error_messages', :locals => {:target => @design_configuration} %>
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @design_configuration } %>
 
 <% content_for :page_title do %>
-    <%= Spree.t(:edit_design_configuration) %>
+    <br/>
+    <span style="margin-left: 10px">Design -</span>
+    Configurations / <%= @design_configuration.name %>
 <% end %>
 
 <% content_for :page_actions do %>
+    <li>
+      <%= button_link_to Spree.t(:design_options), admin_design_configuration_design_options_path(@design_configuration), :class => 'button', icon: 'image' %>
+    </li>
     <li>
       <%= button_link_to Spree.t(:back_to_design_configurations_list), admin_product_design_configurations_url(@product), :icon => 'arrow-left' %>
     </li>
 <% end %>
 
 <div class="row">
-  <div class="alpha ten columns">
-    <%= form_for [:admin, @product, @design_configuration] do |f| %>
-        <fieldset class="no-border-top">
-          <%= render :partial => 'form', :locals => {:f => f} %>
-          <div class="clear"></div>
-          <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
-        </fieldset>
-    <% end %>
-  </div>
-  <div class="omega offset-by-one five columns">
-    <fieldset class="no-border-bottom">
-      <legend class="center">Options</legend>
-      <%= render :partial => 'spree/admin/design_configurations/design_options' %>
-    </fieldset>
-  </div>
+  <%= form_for [:admin, @product, @design_configuration] do |f| %>
+      <fieldset class="no-border-top">
+        <%= render :partial => 'form', :locals => { :f => f } %>
+        <div class="clear"></div>
+        <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+      </fieldset>
+  <% end %>
 </div>

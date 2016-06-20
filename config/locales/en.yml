@@ -1,10 +1,5 @@
 ---
 en:
-  activerecord:
-    models:
-      spree/product_customization_configuration:
-        one: "Customization Configuration"
-        other: "Customization Configurations"
   spree:
     admin:
       customization_option_configurations:
@@ -25,5 +20,6 @@ en:
     new_design_configuration: "New Design Configuration"
 
     back_to_design_options_list: "Back to Design Options"
+    back_to_design_option: "Back to Design Option"
     edit_design_option: "Edit Design Option"
-    new_design_option: "Edit Design Option"
+    new_design_option: "New Design Option"

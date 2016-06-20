@@ -5,11 +5,15 @@ Spree::Core::Engine.routes.draw do
     end
 
     resources :design_configurations, only: [] do
-      resources :design_options, except: [:index, :show]
+      resources :design_options, except: [:show]
     end
 
     resources :design_options, only: [] do
-      resources :images, except: [:show], controller: 'design_option_images'
+      resources :design_option_images, except: [:show], as: :images do
+        collection do
+          post :update_positions
+        end
+      end
     end
   end
 

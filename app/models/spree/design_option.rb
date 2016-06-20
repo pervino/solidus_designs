@@ -4,7 +4,7 @@ module Spree
 
     belongs_to :design_configuration
     has_one :product, through: :design_configuration
-    has_many :images, -> { order(:position) }, as: :viewable, dependent: :destroy, class_name: "Spree::Image"
+    has_many :images, -> { order(:position) }, as: :viewable, dependent: :destroy, class_name: "Spree::DesignOptionImage"
 
     before_validation :ensure_action_has_calculator
     validates :medium, presence: true

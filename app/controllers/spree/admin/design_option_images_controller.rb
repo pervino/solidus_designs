@@ -22,20 +22,9 @@ module Spree
       end
 
       def set_viewable
-        @image.viewable_type = 'Spree::DesignOption'
-        @image.viewable_id = @design_option.id
+        @design_option_image.viewable_type = 'Spree::DesignOption'
+        @design_option_image.viewable_id = @design_option.id
       end
-
-      private
-
-      def model_class
-        Spree::Image
-      end
-
-      def object_name
-        "image".singularize
-      end
-
     end
   end
 end

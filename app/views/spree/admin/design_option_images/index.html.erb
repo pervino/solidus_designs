@@ -1,4 +1,10 @@
-<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Design Configurations'} %>
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Design Configurations' } %>
+
+<% content_for :page_title do %>
+    <br/>
+    <span style="margin-left: 10px">Design -</span>
+    Configurations / <%= @design_option.design_configuration.name %> / Options / <%= @design_option.name %> / Images
+<% end %>
 
 <% content_for :page_actions do %>
     <% if can?(:create, Spree::Image) %>
@@ -16,11 +22,11 @@
       <%= Spree.t(:no_images_found) %>.
     </div>
 <% else %>
-    <table class="index sortable" data-hook="images_table">
+    <table class="index sortable" data-hook="images_table" data-sortable-link="<%= update_positions_admin_design_option_images_url(@design_option) %>">
       <colgroup>
         <col style="width: 5%">
-        <col style="width: 10%">
-        <col style="width: 45%">
+        <col style="width: 15%">
+        <col style="width: 60%">
         <col style="width: 15%">
       </colgroup>
       <thead>
@@ -40,15 +46,15 @@
               <% end %>
             </td>
             <td>
-              <%= link_to image_tag(image.attachment.url(:mini)), image.attachment.url(:product) %>
+              <%= link_to image_tag(image.attachment.url(:small)), image.attachment.url(:medium) %>
             </td>
             <td><%= image.alt %></td>
             <td class="actions">
               <% if can?(:update, image) %>
-                  <%= link_to_with_icon 'edit', Spree.t('actions.edit'), edit_admin_design_option_image_url(@design_option, image), :no_text => true, :data => {:action => 'edit'} %>
+                  <%= link_to_with_icon 'edit', Spree.t('actions.edit'), edit_admin_design_option_image_url(@design_option, image), :no_text => true, :data => { :action => 'edit' } %>
               <% end %>
               <% if can?(:destroy, image) %>
-                  <%= link_to_delete image, {:url => admin_design_option_image_url(@design_option, image), :no_text => true} %>
+                  <%= link_to_delete image, { :url => admin_design_option_image_url(@design_option, image), :no_text => true } %>
               <% end %>
             </td>
           </tr>

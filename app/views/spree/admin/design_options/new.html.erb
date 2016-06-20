@@ -3,7 +3,9 @@
 <%= render :partial => 'spree/shared/error_messages', :locals => {:target => @design_option} %>
 
 <% content_for :page_title do %>
-    <%= Spree.t(:new_design_option) %>
+    <br/>
+    <span style="margin-left: 10px">Design -</span>
+    Configurations / <%= @design_configuration.name %> / Options / New
 <% end %>
 
 <% content_for :page_actions do %>
