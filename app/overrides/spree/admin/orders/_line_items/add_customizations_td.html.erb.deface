@@ -1,0 +1,36 @@
+<!-- insert_before "[data-hook='line-items'] td.line-item-price" -->
+
+<td class="item-customizations">
+  <% if item.customizations.any? %>
+      <% item.customizations.each do |customization| %>
+          <div style="float: left">
+            <%= customization.source.name %><br/>
+            <%= link_to "Edit", "javascript:void(0);", class: 'edit-customization',
+                        data: {
+                            design_id: customization.article.id,
+                            customization_id: customization.id,
+                            user_id: @order.user_id
+                        }
+            %>
+          </div>
+          <%= image_tag customization.article.rendering(:small), style: 'margin-left: 10px; max-height: 90px; max-width: 90px;' %>
+      <% end %>
+  <% else %>
+      <% if item.product.design_configurations.any? %>
+          Add:<br/>
+          <% item.product.design_configurations.each do |configuration| %>
+              <% configuration.design_options.each do |option| %>
+                  <%= link_to "#{option.name}", "javascript:void(0);", class: 'add-customization',
+                              data: {
+                                  medium: option.medium,
+                                  size: configuration.size,
+                                  configuration_id: configuration.id,
+                                  source_id: option.id,
+                                  user_id: @order.user_id
+                              }
+                  %><br/>
+              <% end %>
+          <% end %>
+      <% end %>
+  <% end %>
+</td>

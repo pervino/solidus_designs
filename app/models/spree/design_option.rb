@@ -3,6 +3,7 @@ module Spree
     include Spree::Customization::Source
 
     belongs_to :design_configuration
+    belongs_to :preselected_design, class_name: "Spree::Design"
     has_one :product, through: :design_configuration
     has_many :images, -> { order(:position) }, as: :viewable, dependent: :destroy, class_name: "Spree::DesignOptionImage"
 

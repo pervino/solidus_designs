@@ -3,50 +3,26 @@
     <div class="alpha four columns">
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
+      <small>Appears under the "Select a Customization" dropdown</small>
     </div>
     <div class="omega four columns">
-      <%= f.label :medium %>
+      <%= f.label :label %><br/>
+      <%= f.text_field :label, class: 'form-control' %>
+      <small>Labels the associated charge in the order summary</small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="alpha four columns">
+      <%= f.label :medium %><br/>
       <%= f.select :medium, Spree::Designs::Config.mediums.collect { |s| [s.to_s.titlecase, s] }, {}, class: 'select2 fullwidth' %>
     </div>
   </div>
-
-  <%= f.fields_for :meta, OpenStruct.new(f.object.meta) do |ff| %>
-      <div class="row">
-        <div class="alpha eight columns">
-          <%= ff.label :description %>
-          <%= ff.text_area :description, class: 'fullwidth', rows: 5 %>
-        </div>
-      </div>
-  <% end %>
 </div>
-
 <div class="omega offset-by-one eight columns">
-  <table style="margin-top: 16px;">
-    <thead>
-    <tr>
-      <th>Key</th>
-      <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>
-        <b>Name</b>
-      </td>
-      <td>
-        Appears under the "Select a Customization" dropdown
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <b>Label</b>
-      </td>
-      <td>
-        Used to label the associated charge under in the order summary
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <%= f.fields_for :meta, OpenStruct.new(f.object.meta) do |ff| %>
+      <%= ff.label :description %>
+      <%= ff.text_area :description, class: 'fullwidth', rows: 6 %>
+  <% end %>
 </div>
 
 
