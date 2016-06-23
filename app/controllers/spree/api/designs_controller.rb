@@ -44,7 +44,7 @@ module Spree
       end
 
       def index
-        authorize! :admin, current_api_user
+        # authorize! :index, Design
         @designs = Design.unscoped.ransack(params[:q]).
             result.order('created_at DESC').
             page(params[:page]).

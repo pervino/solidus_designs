@@ -1,7 +1,8 @@
 @SelectDesign = (medium, size, user_id, callback) ->
   props =
-    medium: medium,
+    medium: medium
     size: size
+    user_id: user_id
 
   modalSettings =
     modalClasses: 'modal-lg'

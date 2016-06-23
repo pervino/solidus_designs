@@ -26,8 +26,9 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'solidus_core', '~> 1.3.rc1'
-  s.add_dependency 'solidus_backend', '~> 1.3.rc1'
+  s.add_dependency 'solidus_core', '~> 1.3'
+  s.add_dependency 'solidus_api', '~> 1.3'
+  s.add_dependency 'solidus_backend', '~> 1.3'
   s.add_dependency 'solidus_customizations'
   s.add_dependency 'solidus_auth_devise'
   s.add_dependency 'acts-as-taggable-on', '~> 3.4'

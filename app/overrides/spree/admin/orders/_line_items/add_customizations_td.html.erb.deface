@@ -3,17 +3,24 @@
 <td class="item-customizations">
   <% if item.customizations.any? %>
       <% item.customizations.each do |customization| %>
-          <div style="float: left">
+          <div style="text-align: center">
             <%= customization.source.name %><br/>
+            <%= image_tag customization.article.rendering(:small), style: 'padding: 3px; max-height: 120px; max-width: 120px;' %>
             <%= link_to "Edit", "javascript:void(0);", class: 'edit-customization',
                         data: {
                             design_id: customization.article.id,
                             customization_id: customization.id,
                             user_id: @order.user_id
                         }
+            %>/<%= link_to "Change", "javascript:void(0);", class: 'change-customization',
+                        data: {
+                            medium: customization.source.medium,
+                            size: customization.configuration.size,
+                            user_id: @order.user_id,
+                            customization_id: customization.id
+                }
             %>
           </div>
-          <%= image_tag customization.article.rendering(:small), style: 'margin-left: 10px; max-height: 90px; max-width: 90px;' %>
       <% end %>
   <% else %>
       <% if item.product.design_configurations.any? %>

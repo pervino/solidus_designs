@@ -17,7 +17,7 @@ module Spree
     validates :render_url, presence: true
     validates :size, presence: true
 
-    self.whitelisted_ransackable_attributes = ['user_id', 'size', 'guest_token']
+    self.whitelisted_ransackable_attributes = ['user_id', 'medium', 'size', 'guest_token']
     self.whitelisted_ransackable_associations = ['template']
 
     def render_url=(url)

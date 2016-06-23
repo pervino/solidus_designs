@@ -2,6 +2,8 @@ module Spree
   class DesignOption < Spree::Base
     include Spree::Customization::Source
 
+    store_accessor :meta, :description
+
     belongs_to :design_configuration
     belongs_to :preselected_design, class_name: "Spree::Design"
     has_one :product, through: :design_configuration
