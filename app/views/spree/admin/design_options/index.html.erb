@@ -37,7 +37,7 @@
                   <%= link_to_edit option, url: edit_admin_design_configuration_design_option_path(@design_configuration, option), :no_text => true %>
               <% end %>
               <% if can?(:destroy, option) %>
-                  <%= link_to_delete option, url: edit_admin_design_configuration_design_option_path(@design_configuration, option), :no_text => true %>
+                  <%= link_to_delete option, url: admin_design_configuration_design_option_path(@design_configuration, option), :no_text => true %>
               <% end %>
           </tr>
       <% end %>

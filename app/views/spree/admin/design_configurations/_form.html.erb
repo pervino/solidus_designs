@@ -30,8 +30,13 @@
   </div>
 </div>
 <div class="omega offset-by-one eight columns">
-  <%= f.fields_for :meta, OpenStruct.new(f.object.meta) do |ff| %>
-      <%= ff.label :description %>
-      <%= ff.text_area :description, class: 'fullwidth', rows: 6 %>
+  <%= f.field_container :dimensions do %>
+      <%= f.label :dimensions %>
+      <%= f.text_field :dimensions, class: 'form-control' %>
+  <% end %>
+
+  <%= f.field_container :description do %>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'fullwidth', rows: 6 %>
   <% end %>
 </div>
