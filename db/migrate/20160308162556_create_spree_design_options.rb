@@ -6,6 +6,7 @@ class CreateSpreeDesignOptions < ActiveRecord::Migration
       t.string :name
       t.string :label
       t.hstore :meta, default: {}
+      t.integer :position
 
       t.string :medium
 

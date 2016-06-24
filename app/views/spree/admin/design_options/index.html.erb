@@ -16,14 +16,15 @@
 <% end %>
 
 <% if @design_options.any? %>
-    <table class="index" id='listing_design_options' data-hook>
+    <table class="index sortable" data-hook="design_options_table" data-sortable-link="<%= update_positions_admin_design_configuration_design_options_url(@design_configuration) %>">
       <colgroup>
-        <col style="width: 85%"/>
+        <col style="width: 5%">
+        <col style="width: 80%"/>
         <col style="width: 15%"/>
       </colgroup>
       <thead>
       <tr>
-        <th>
+        <th colspan="2">
           Name
         </th>
       </tr>
@@ -31,6 +32,11 @@
       <tbody>
       <% @design_options.each do |option| %>
           <tr id="<%= spree_dom_id option %>" data-hook="customization_row">
+            <td class="no-border">
+              <% if can?(:update_positions, Spree::DesignOption) %>
+                  <span class="handle"></span>
+              <% end %>
+            </td>
             <td class="align-center"><%= option.name %></td>
             <td class="actions">
               <% if can?(:update, option) %>

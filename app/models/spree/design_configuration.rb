@@ -5,7 +5,7 @@ module Spree
     store_accessor :meta, :description, :dimensions
 
     belongs_to :product, touch: true
-    has_many :design_options, dependent: :destroy
+    has_many :design_options, -> { order(position: :asc) }, dependent: :destroy
 
     validates :name, presence: true
     validates :size, presence: true

@@ -8,6 +8,7 @@ class CreateSpreeDesignConfigurations < ActiveRecord::Migration
 
       t.string :size
       t.string :type
+      t.integer :position
 
       t.references :product
 

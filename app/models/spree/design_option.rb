@@ -1,6 +1,7 @@
 module Spree
   class DesignOption < Spree::Base
     include Spree::Customization::Source
+    acts_as_list scope: [:design_configuration_id]
 
     store_accessor :meta, :description
 

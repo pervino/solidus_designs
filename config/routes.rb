@@ -5,7 +5,11 @@ Spree::Core::Engine.routes.draw do
     end
 
     resources :design_configurations, only: [] do
-      resources :design_options, except: [:show]
+      resources :design_options, except: [:show] do
+        collection do
+          post :update_positions
+        end
+      end
     end
 
     resources :design_options, only: [] do
