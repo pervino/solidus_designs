@@ -12,7 +12,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_designs'
-  s.version     = '0.1.12'
+  s.version     = '0.1.13'
   s.summary     = 'Add customizations to items (shipments and line items)'
   s.description = 'Provides customization options to line items'
   s.required_ruby_version = '>= 2.1.0'
