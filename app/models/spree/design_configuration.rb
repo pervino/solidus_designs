@@ -2,6 +2,8 @@ module Spree
   class DesignConfiguration < Spree::Base
     include Spree::Customization::Configurable
 
+    acts_as_paranoid
+
     store_accessor :meta, :description, :dimensions
 
     belongs_to :product, touch: true
