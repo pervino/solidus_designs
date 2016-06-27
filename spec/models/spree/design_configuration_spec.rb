@@ -1,4 +1,4 @@
-RSpec.describe Spree::DesignConfigur, type: :model do
+RSpec.describe Spree::DesignConfiguration, type: :model do
 
   describe "#adjust" do
     let(:order) { create(:order_with_line_items) }

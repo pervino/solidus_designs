@@ -13,7 +13,7 @@ module Spree
 
       def load_data
         @calculators = Rails.application.config.spree.calculators.design
-        @design_configuration ||= DesignOption.find(params[:design_configuration_id])
+        @design_configuration = DesignConfiguration.find(params[:design_configuration_id])
         @product = @design_configuration.product
       end
     end

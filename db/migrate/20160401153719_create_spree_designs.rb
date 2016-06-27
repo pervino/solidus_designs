@@ -11,11 +11,12 @@ class CreateSpreeDesigns < ActiveRecord::Migration
 
       t.string :medium
       t.string :name
+      t.string :size
       t.float :popularity
       t.string :guest_token
 
       t.timestamp :deleted_at
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :spree_designs, :user_id

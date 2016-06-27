@@ -3,7 +3,7 @@ SimpleCov.start "rails"
 
 ENV["RAILS_ENV"] ||= 'test'
 
-require File.expand_path('../dummy/config/environment.rb',  __FILE__)
+require File.expand_path('../dummy/config/environment.rb', __FILE__)
 
 require "rspec/rails"
 require "shoulda-matchers"
@@ -11,11 +11,11 @@ require "ffaker"
 
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 
+require "spree/designs/factories"
+
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
-  config.raise_errors_for_deprecations!
 
-  # config.backtrace_exclusion_patterns = [/gems\/activesupport/, /gems\/actionpack/, /gems\/rspec/]
   config.color = true
   config.fail_fast = ENV['FAIL_FAST'] || false
 

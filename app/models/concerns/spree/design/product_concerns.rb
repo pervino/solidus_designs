@@ -3,14 +3,16 @@ module Spree
     extend ActiveSupport::Concern
 
     included do
-      prepend(InstanceMethods)
-
       has_many :design_configurations, dependent: :destroy
+
+      prepend(InstanceMethods)
     end
 
     module InstanceMethods
+
+      # Possibly call super here, though it may not be defined
       def duplicate_extra(original)
-        self.design_configurations = original.design_configurations
+        Spree::Designs::ProductDuplicator.new(self, original).duplicate
       end
 
       def can_design?(designType = nil)

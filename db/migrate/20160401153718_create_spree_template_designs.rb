@@ -3,7 +3,7 @@ class CreateSpreeTemplateDesigns < ActiveRecord::Migration
     create_table :spree_template_designs do |t|
       t.references :design
       t.references :template
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :spree_template_designs, :template_id

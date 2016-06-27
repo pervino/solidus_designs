@@ -1,5 +1,3 @@
-require 'spree/testing_support/factories/design_factory'
-
 FactoryGirl.define do
   factory :design, class: Spree::Design do
     template
