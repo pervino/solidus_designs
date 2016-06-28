@@ -44,7 +44,7 @@ module Spree
     end
 
     def adjustment_label(amount = nil)
-      label || "Personalization"
+      label || "Personalization - #{medium}"
     end
   end
 end

@@ -14,8 +14,8 @@
                         }
             %>/<%= link_to "Change", "javascript:void(0);", class: 'change-customization',
                         data: {
-                            medium: customization.source.medium,
-                            size: customization.configuration.size,
+                            medium: customization.source.try(:medium) || customization.article.medium,
+                            size: customization.configuration.size || customization.article.size,
                             user_id: @order.user_id,
                             customization_id: customization.id
                 }
