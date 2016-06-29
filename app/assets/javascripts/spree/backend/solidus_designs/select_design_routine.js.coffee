@@ -2,7 +2,8 @@
   props =
     medium: medium
     size: size
-    user_id: user_id
+
+  props.user_id = user_id if user_id
 
   modalSettings =
     modalClasses: 'modal-lg'
