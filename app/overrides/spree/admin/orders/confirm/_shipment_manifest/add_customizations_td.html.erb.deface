@@ -1,0 +1,11 @@
+<!-- insert_after "tr.stock-item td.item-name" -->
+
+<td class="item-customizations">
+  <% if item.line_item.customizations.any? %>
+      <% item.line_item.customizations.each do |customization| %>
+        <%= customization.source.try(:medium) || customization.article.medium %>
+      <% end %>
+  <% else %>
+      None.
+  <% end %>
+</td>
