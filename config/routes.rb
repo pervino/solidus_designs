@@ -26,6 +26,10 @@ Spree::Core::Engine.routes.draw do
       get :tags, on: :collection
     end
 
+    resources :designs do
+      get :mine, on: :collection
+    end
+
     resources :template_designs, only: [:index]
 
     # todo refactor into designs resources routes
@@ -33,8 +37,5 @@ Spree::Core::Engine.routes.draw do
     put 'orders/:order_id/line_items/:id/design', to: "line_items#set_design"
     delete 'orders/:order_id/line_items/:id/design', to: "line_items#remove_design"
 
-    resources :designs do
-      get :mine, on: :collection
-    end
   end
 end

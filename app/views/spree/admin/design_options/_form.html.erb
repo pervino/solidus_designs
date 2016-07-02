@@ -16,14 +16,15 @@
       <%= f.label :medium %><br/>
       <%= f.select :medium, Spree::Designs::Config.mediums.collect { |s| [s.to_s.titlecase, s] }, {}, class: 'select2 fullwidth' %>
     </div>
+    <div class="omega four columns">
+      <%= f.label :tags %><br/>
+      <%= f.select :tag_list, Spree::Template.occasion_counts.collect { |tag| [tag.name, tag.name] }, {}, class: 'select2 fullwidth', multiple: true %>
+    </div>
   </div>
 </div>
-
 <div class="omega offset-by-one eight columns">
-  <%= f.field_container :description do %>
-      <%= f.label :description %>
-      <%= f.text_area :description, class: 'fullwidth', rows: 6 %>
-  <% end %>
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'fullwidth', rows: 6 %>
 </div>
 
 <div class="clear"></div>
