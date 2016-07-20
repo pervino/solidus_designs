@@ -6,6 +6,6 @@ Spree::PermittedAttributes.module_eval do
   ])
 
   class_variable_set(:@@template_attributes, [
-      :name, :medium, :display, :holiday_list, :occasion_list, :recipient_list, :color_list
+      :name, :medium, :display, :tag_list
   ])
 end

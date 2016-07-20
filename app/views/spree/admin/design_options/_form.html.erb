@@ -18,7 +18,7 @@
     </div>
     <div class="omega four columns">
       <%= f.label :tags %><br/>
-      <%= f.select :tag_list, Spree::Template.occasion_counts.collect { |tag| [tag.name, tag.name] }, {}, class: 'select2 fullwidth', multiple: true %>
+      <%= f.select :tag_list, Spree::Template.tag_counts.collect { |tag| [tag.name, tag.name] }, {}, class: 'select2 fullwidth', multiple: true %>
     </div>
   </div>
 </div>
