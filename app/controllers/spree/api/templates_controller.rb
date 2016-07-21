@@ -20,7 +20,7 @@ module Spree
       end
 
       def tags
-        @tags = Spree::Template.tag_counts
+        @tags = Spree::Template.display.tag_counts
         render json: {tags: @tags}
       end
 

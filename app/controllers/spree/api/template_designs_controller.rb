@@ -9,6 +9,13 @@ module Spree
         if params[:tagged_with]
           templates = Spree::Template.tagged_with(params[:tagged_with], any: true)
           params[:q][:template_id_in] = templates.pluck(:id)
+
+          # Otherwise all templates will be found when no tagged templates were found
+          if templates.any?
+            params[:q][:template_id_in] = templates.pluck(:id)
+          else
+            params[:q][:template_id_in] = [-1]
+          end
         end
 
         @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
