@@ -1,0 +1,3 @@
+<!-- replace "[data-hook='line-items'] erb:contains('save-line-item')" -->
+
+<%= link_to '', '#', :class => 'solidus-designs-save-line-item fa fa-ok no-text with-tip', :title => Spree.t('actions.save') %>

@@ -1,3 +1,12 @@
+onSaveLineItem = (e) ->
+  e.preventDefault()
+  line_item = $(this).closest('.line-item')
+  line_item_id = line_item.data('line-item-id')
+  quantity = parseInt(line_item.find('input.line_item_quantity').val())
+  price = parseInt(line_item.find('input.line_item_price').val())
+  adjustLineItem(line_item_id, quantity, price)
+  editingDone(e)
+
 onAddCustomization = (e) ->
   e.preventDefault()
   line_item = $(this).closest('.line-item')
@@ -40,6 +49,7 @@ $(document).ready ->
   .on('click', '.add-customization', onAddCustomization)
   .on('click', '.edit-customization', onEditCustomization)
   .on('click', '.change-customization', onChangeCustomization)
+  .on('click', '.solidus-designs-save-line-item', onSaveLineItem)
 
 
 lineItemURL = (id) ->
@@ -47,6 +57,20 @@ lineItemURL = (id) ->
 
 customizationUrl = (line_item_id, id) ->
   "#{Spree.routes.customizations_api(line_item_id)}/#{id}.json"
+
+
+adjustLineItem = (line_item_id, quantity, price) ->
+  url = lineItemURL(line_item_id)
+  Spree.ajax(
+    type: "PUT",
+    url: url,
+    data:
+      line_item:
+        quantity: quantity
+        options:
+          price: price
+  ).done (msg) ->
+    window.Spree.advanceOrder()
 
 addCustomization = (line_item_id, quantity, price, design, configuration_id, source_id) ->
   url = lineItemURL(line_item_id)
@@ -82,3 +106,4 @@ editCustomization = (line_item_id, design_id, customization_id) ->
         article_id: design_id
   ).done (msg) ->
     window.location.reload()
+
