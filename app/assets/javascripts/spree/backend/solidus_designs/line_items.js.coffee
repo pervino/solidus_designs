@@ -1,18 +1,9 @@
-onSaveLineItem = (e) ->
-  e.preventDefault()
-  line_item = $(this).closest('.line-item')
-  line_item_id = line_item.data('line-item-id')
-  quantity = parseInt(line_item.find('input.line_item_quantity').val())
-  price = parseInt(line_item.find('input.line_item_price').val())
-  adjustLineItem(line_item_id, quantity, price)
-  editingDone(e)
-
 onAddCustomization = (e) ->
   e.preventDefault()
-  line_item = $(this).closest('.line-item')
+  line_item = $(this).closest('.item')
   line_item_id = line_item.data('line-item-id')
-  quantity = parseInt(line_item.find('input.line_item_quantity').val())
-  price = parseFloat(line_item.find('input.line_item_price').val())
+  quantity = parseInt(line_item.find('input.item_quantity').val())
+  price = parseFloat(line_item.find('input.item_price').val())
   medium = $(this).data('medium')
   size = $(this).data('size')
   configuration_id = $(this).data('configuration-id')

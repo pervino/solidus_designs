@@ -1,0 +1,28 @@
+<!-- insert_before "td.item-price" -->
+
+<td class="item-customizations">
+  <% if item.line_item.customizations.any? %>
+      <% item.line_item.customizations.each do |customization| %>
+          <div style="text-align: center">
+            <%= customization.source.try(:name) || customization.article.medium %><br/>
+            <%= image_tag customization.article.rendering(:small), style: 'padding: 3px; max-height: 120px; max-width: 120px;' %>
+            <%= link_to "Edit", "javascript:void(0);", class: 'edit-customization',
+                        data: {
+                            design_id: customization.article.id,
+                            customization_id: customization.id,
+                            user_id: @order.user_id
+                        }
+            %>/<%= link_to "Change", "javascript:void(0);", class: 'change-customization',
+                        data: {
+                            medium: customization.source.try(:medium) || customization.article.medium,
+                            size: customization.configuration.try(:size) || customization.article.size,
+                            user_id: @order.user_id,
+                            customization_id: customization.id
+                }
+            %>
+          </div>
+      <% end %>
+  <% else %>
+      None.
+  <% end %>
+</td>

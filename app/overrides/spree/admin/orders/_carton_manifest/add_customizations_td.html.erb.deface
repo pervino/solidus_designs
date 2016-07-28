@@ -1,0 +1,14 @@
+<!-- insert_before "td.item-price" -->
+
+<td class="item-customizations">
+  <% if item.line_item.customizations.any? %>
+      <% item.line_item.customizations.each do |customization| %>
+          <div style="text-align: center">
+            <%= customization.source.try(:name) || customization.article.medium %><br/>
+            <%= image_tag customization.article.rendering(:small), style: 'padding: 3px; max-height: 120px; max-width: 120px;' %>
+          </div>
+      <% end %>
+  <% else %>
+      None.
+  <% end %>
+</td>

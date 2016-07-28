@@ -1,0 +1,5 @@
+<!-- insert_after "[data-hook='stock-contents'] thead th[colspan='2']" -->
+
+<th>
+  Customizations
+</th>
