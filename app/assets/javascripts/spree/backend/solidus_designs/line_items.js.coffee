@@ -26,6 +26,7 @@ onAddCustomization = (e) ->
     addCustomization(line_item_id, quantity, price, design, configuration_id, source_id)
 
 onEditCustomization = (e) ->
+  console.log("hi")
   e.preventDefault()
   line_item = $(this).closest('.line-item')
   line_item_id = line_item.data('line-item-id');

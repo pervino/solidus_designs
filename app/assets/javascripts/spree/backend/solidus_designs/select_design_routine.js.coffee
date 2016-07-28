@@ -20,6 +20,11 @@
 
 
 @CreateDesign = (source_design_id, user_id, callback) ->
+  props =
+    design_id: source_design_id
+    lablrSettings:
+      admin: true
+
   modalSettings =
     modalClasses: 'modal-lg'
     modalStyles: {height: "670px"}
@@ -30,4 +35,4 @@
       req.done (data) ->
         callback data
 
-  new IframeModalLauncher('/components/create_design', design_id: source_design_id, routineCallbacks, modalSettings)
+  new IframeModalLauncher('/components/create_design', props, routineCallbacks, modalSettings)
