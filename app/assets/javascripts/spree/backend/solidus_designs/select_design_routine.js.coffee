@@ -22,6 +22,7 @@
 @CreateDesign = (source_design_id, user_id, callback) ->
   modalSettings =
     modalClasses: 'modal-lg'
+    modalStyles: {height: "670px"}
 
   routineCallbacks =
     save: (rawDesign, sourceDesign) ->
