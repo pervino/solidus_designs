@@ -19,6 +19,10 @@ Spree::Core::Engine.routes.draw do
         end
       end
     end
+
+    resources :users, only: [] do
+      get :designs, on: :member
+    end
   end
 
   namespace :api, defaults: { format: 'json' } do

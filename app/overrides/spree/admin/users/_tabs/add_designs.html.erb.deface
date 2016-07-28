@@ -1,0 +1,7 @@
+<!-- insert_bottom "[data-hook='admin_user_tab_options']" -->
+
+<% if can?(:display, Spree::Design) %>
+    <li<%== ' class="active"' if current == :designs %>>
+      <%= link_to_with_icon 'pencil', "Designs", spree.designs_admin_user_path(@user) %>
+    </li>
+<% end %>
