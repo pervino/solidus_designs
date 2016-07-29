@@ -22,7 +22,7 @@ onAddCustomization = (e) ->
   configuration_id = $(this).data('configuration-id')
   source_id = $(this).data('source-id')
   user_id = $(this).data('user-id')
-  SelectDesign medium, size, user_id, (design) ->
+  Routine.SelectDesign medium, size, user_id, (design) ->
     addCustomization(line_item_id, quantity, price, design, configuration_id, source_id)
 
 onEditCustomization = (e) ->
@@ -33,7 +33,7 @@ onEditCustomization = (e) ->
   design_id = $(this).data('design-id')
   customization_id = $(this).data('customization-id')
   user_id = $(this).data('user-id')
-  CreateDesign design_id, user_id, (design) ->
+  Routine.CreateDesign design_id, user_id, (design) ->
     editCustomization(line_item_id, design.id, customization_id)
 
 onChangeCustomization = (e) ->
@@ -46,7 +46,7 @@ onChangeCustomization = (e) ->
   size = $(this).data('size')
   customization_id = $(this).data('customization-id')
   user_id = $(this).data('user-id')
-  SelectDesign medium, size, user_id, (design) ->
+  Routine.SelectDesign medium, size, user_id, (design) ->
     editCustomization(line_item_id, design.id, customization_id)
 
 $(document).ready ->
@@ -111,4 +111,3 @@ editCustomization = (line_item_id, design_id, customization_id) ->
         article_id: design_id
   ).done (msg) ->
     window.location.reload()
-

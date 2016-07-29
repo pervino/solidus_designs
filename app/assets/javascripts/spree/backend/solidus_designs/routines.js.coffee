@@ -1,4 +1,4 @@
-@SelectDesign = (medium, size, user_id, callback) ->
+SelectDesign = (medium, size, user_id, callback) ->
   props =
     medium: medium
     size: size
@@ -19,7 +19,7 @@
   new IframeModalLauncher('/components/select_design', props, routineCallbacks, modalSettings)
 
 
-@CreateDesign = (source_design_id, user_id, callback) ->
+CreateDesign = (source_design_id, user_id, callback) ->
   props =
     design_id: source_design_id
     lablrSettings:
@@ -36,3 +36,8 @@
         callback data
 
   new IframeModalLauncher('/components/create_design', props, routineCallbacks, modalSettings)
+
+
+@Routine =
+  CreateDesign: CreateDesign
+  SelectDesign: SelectDesign
