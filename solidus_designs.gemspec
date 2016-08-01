@@ -10,18 +10,18 @@
 # git push fury -f branch:master
 # Gemfury Only builds from master branch.
 Gem::Specification.new do |s|
-  s.platform    = Gem::Platform::RUBY
-  s.name        = 'solidus_designs'
-  s.version     = '0.1.32'
+  s.platform = Gem::Platform::RUBY
+  s.name = 'solidus_designs'
+  s.version = '0.1.33'
   s.required_ruby_version = '>= 2.1'
 
-  s.author    = ['Anthony Daddeo']
-  s.email     = ['anthony@personalwine.com']
-  s.homepage  = 'http://www.personalwine.com'
-  s.summary   = 'Customize products with designs'
+  s.author = ['Anthony Daddeo']
+  s.email = ['anthony@personalwine.com']
+  s.homepage = 'http://www.personalwine.com'
+  s.summary = 'Customize products with designs'
 
-  s.files       = `git ls-files`.split("\n")
-  s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.files = `git ls-files`.split("\n")
+  s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_path = "lib"
   s.requirements << "none"
 
