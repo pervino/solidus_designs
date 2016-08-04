@@ -4,16 +4,16 @@ module Spree
     belongs_to :design
 
     validates :design, uniqueness: true
-    validate :templates_designs_unique_in_size
+    validate :template_designs_unique_in_size
 
     self.whitelisted_ransackable_attributes = ['template_id']
     self.whitelisted_ransackable_associations = ['design', 'template']
 
     private
 
-    def templates_designs_unique_in_size
+    def template_designs_unique_in_size
       if template.designs.map(&:size).uniq.length != template.designs.length
-        errors.add(:template, "must have designs with unique sizes")
+        errors.add(:template, "designs must have unique sizes")
       end
     end
   end

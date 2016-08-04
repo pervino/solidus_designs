@@ -5,6 +5,7 @@ node :rendering do |design|
   {
     small: design.rendering.url(:small),
     medium: design.rendering.url(:medium),
+    large: design.rendering.url(:large),
     original: design.rendering.url(:original)
   }
 end

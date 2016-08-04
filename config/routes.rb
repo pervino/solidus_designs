@@ -34,7 +34,7 @@ Spree::Core::Engine.routes.draw do
       get :mine, on: :collection
     end
 
-    resources :template_designs, only: [:index]
+    resources :template_designs, only: [:index, :create, :update]
 
     # todo refactor into designs resources routes
     get 'designs/user/:user_id', to: "designs#user"
