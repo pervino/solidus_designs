@@ -24,7 +24,7 @@ module Spree
       end
 
       def create
-        # authorize! :create, TemplateDesign
+        authorize! :create, TemplateDesign
 
         @template_design = TemplateDesign.new(permitted_params)
 
@@ -36,7 +36,7 @@ module Spree
       end
 
       def update
-        # authorize! :update, @template_design
+        authorize! :update, @template_design
 
         if @template_design.update_attributes(permitted_params)
           respond_with(@template_design, default_template: :show)
