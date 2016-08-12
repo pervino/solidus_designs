@@ -13,7 +13,7 @@ module Spree
     has_attached_file :rendering, styles: { large: "600x600>", medium: "400x400>", small: "250x250>" }, default_url: :render_url
     validates_attachment_content_type :rendering, content_type: /\Aimage\/.*\Z/
 
-    validates :template, presence: true
+    # validates :template, presence: true
     validates :render_url, presence: true
     validates :size, presence: true
 
