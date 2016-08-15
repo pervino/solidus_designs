@@ -1,0 +1,11 @@
+<!-- replace ".item-image" -->
+
+<td class="item-image">
+  <% if item.line_item.customizations.any? && item.line_item.customizations.first.virtual_proof.present? %>
+      <%= link_to item.line_item.customizations.first.virtual_proof(:original), target: "_blank" do %>
+          <%= image_tag item.line_item.customizations.first.virtual_proof(:small) %>
+      <% end %>
+  <% else %>
+      <%= image_tag item.variant.display_image.attachment(:small) %>
+  <% end %>
+</td>

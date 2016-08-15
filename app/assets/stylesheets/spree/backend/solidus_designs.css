@@ -1,0 +1,12 @@
+.line-item-image {
+    text-align: center;
+}
+
+table td.line-item-image a, table td.item-image a {
+    border: none;
+}
+
+table td.line-item-image img, table td.item-image img {
+    max-height: 150px;
+}
+

@@ -1,0 +1,11 @@
+<!-- replace "[data-hook='line-items'] .line-item-image" -->
+
+<td class="line-item-image">
+  <% if item.customizations.any? && item.customizations.first.virtual_proof.present? %>
+      <%= link_to item.customizations.first.virtual_proof(:original), target: "_blank" do %>
+          <%= image_tag item.customizations.first.virtual_proof(:small) %>
+      <% end %>
+  <% else %>
+      <%= image_tag item.variant.display_image.attachment(:small) %>
+  <% end %>
+</td>
