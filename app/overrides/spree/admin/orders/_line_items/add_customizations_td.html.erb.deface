@@ -5,7 +5,7 @@
       <% item.customizations.each do |customization| %>
           <div style="text-align: center">
             <%= customization.source.try(:name) || customization.article.medium %><br/>
-            <%= link_to customization.article.rendering(:original), download: true do %>
+            <%= link_to customization.article.rendering(:original), target: "_blank" do %>
                 <%= image_tag customization.article.rendering(:small), style: 'padding: 3px; max-height: 120px; max-width: 120px;' %>
             <% end %>
             <%= link_to "Edit", "javascript:void(0);", class: 'edit-customization',
