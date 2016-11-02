@@ -1,15 +1,24 @@
 module Spree
   class DesignOption < Spree::Base
-    include Spree::Customization::Source
+    acts_as_paranoid
+
+    # Need to deal with adjustments before calculator is destroyed.
+    before_destroy :deals_with_adjustments_for_deleted_source
+
+    include Spree::CalculatedAdjustments
+    include Spree::AdjustmentSource
+
+    has_many :adjustments, as: :source
+    has_many :images, -> { order(:position) }, as: :viewable, dependent: :destroy, class_name: "Spree::DesignOptionImage"
+
+    belongs_to :design_configuration, -> { with_deleted }, touch: true
+
+    has_one :product, through: :design_configuration
 
     acts_as_taggable
     acts_as_list scope: [:design_configuration_id]
 
     store_accessor :meta, :description
-
-    belongs_to :design_configuration, -> { with_deleted }, touch: true
-    has_one :product, through: :design_configuration
-    has_many :images, -> { order(:position) }, as: :viewable, dependent: :destroy, class_name: "Spree::DesignOptionImage"
 
     before_validation :ensure_action_has_calculator
     validates :medium, presence: true
@@ -19,22 +28,18 @@ module Spree
       amount = compute_amount(item)
       return if amount == 0
 
-      adjustments.create!({
-                              adjustable: item,
-                              amount: amount,
-                              order_id: item.order_id,
-                              label: adjustment_label(amount)
-                          })
+      item.adjustments.create!(
+          source: self,
+          amount: amount,
+          order_id: item.order_id,
+          label: adjustment_label(amount)
+      )
     end
 
 
     # This method is used by Adjustment#update to recalculate the cost.
     def compute_amount(item)
       calculator.compute(item)
-    end
-
-    def amount
-      calculator.preferred_amount
     end
 
     private
