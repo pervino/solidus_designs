@@ -12,7 +12,7 @@
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.name = 'solidus_designs'
-  s.version = '1.4.0'
+  s.version = '1.4.1'
   s.required_ruby_version = '>= 2.1'
 
   s.author = ['Anthony Daddeo']
@@ -25,15 +25,15 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   s.requirements << "none"
 
-  s.add_dependency 'solidus_core', '~> 1.3'
-  s.add_dependency 'solidus_api', '~> 1.3'
-  s.add_dependency 'solidus_backend', '~> 1.3'
+  s.add_dependency 'solidus_core', '~> 2.0'
+  s.add_dependency 'solidus_api', '~> 2.0'
+  s.add_dependency 'solidus_backend', '~> 2.0'
   s.add_dependency 'solidus_customizations'
   s.add_dependency 'solidus_auth_devise'
-  s.add_dependency 'acts-as-taggable-on', '~> 3.4'
+  s.add_dependency 'acts-as-taggable-on', '~> 4'
   s.add_dependency 'paranoia', '~> 2.1'
   s.add_dependency 'delayed_job'
-  s.add_dependency 'aws-sdk', '~> 1.5'
+  s.add_dependency 'aws-sdk', '~> 2'
   s.add_dependency 'paperclip', '~> 4.2.0'
   s.add_dependency 'warden'
 
