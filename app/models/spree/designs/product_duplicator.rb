@@ -28,6 +28,7 @@ module Spree
         new_design_option = design_option.dup
         new_design_option.deleted_at = nil
         new_design_option.images = design_option.images.map { |image| duplicate_image image }
+        new_design_option.calculator = calculator.dup
         new_design_option
       end
 
