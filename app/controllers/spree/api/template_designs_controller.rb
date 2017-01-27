@@ -6,6 +6,7 @@ module Spree
       def index
         params[:q] ||= {}
         params[:q][:s] ||= ["template_popularity desc"]
+        params[:q][:template_display_eq] ||= true
 
         if params[:tagged_with]
           templates = Spree::Template.tagged_with(params[:tagged_with], any: true)
