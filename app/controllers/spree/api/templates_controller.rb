@@ -20,7 +20,8 @@ module Spree
       end
 
       def tags
-        @tags = Spree::Template.display.tag_counts
+        mediums = (params[:medium] || 'label,engraving').split(',')
+        @tags = Spree::Template.where(medium: mediums).display.tag_counts
         render json: {tags: @tags}
       end
 
