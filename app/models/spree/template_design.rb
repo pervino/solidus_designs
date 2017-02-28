@@ -1,7 +1,7 @@
 module Spree
   class TemplateDesign < Spree::Base
-    belongs_to :template
-    belongs_to :design
+    belongs_to :template, touch: true
+    belongs_to :design, touch: true
 
     validates :design, uniqueness: true
     validate :template_designs_unique_in_size
