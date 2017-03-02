@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on', '~> 4'
   s.add_dependency 'paranoia', '~> 2.1'
   s.add_dependency 'delayed_job'
-  s.add_dependency 'aws-sdk', '~> 2'
+  s.add_dependency 'aws-sdk'
   s.add_dependency 'paperclip', '~> 4.2.0'
   s.add_dependency 'warden'
 
