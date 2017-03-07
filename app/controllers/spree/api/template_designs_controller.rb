@@ -1,14 +1,15 @@
 module Spree
   module Api
     class TemplateDesignsController < Spree::Api::BaseController
-      before_action :find_template_design, only: [:update, :show]
+      before_action :find_template_design, only: [:update]
 
       def index
         params[:q] ||= {}
         params[:q][:s] ||= ["template_popularity desc"]
+        params[:q][:template_display_eq] ||= true
 
         if params[:tagged_with]
-          templates = Spree::Template.tagged_with(params[:tagged_with], any: true)
+          templates = Spree::Template.tagged_with(params[:tagged_with], :on => :tags, any: true)
           params[:q][:template_id_in] = templates.pluck(:id)
 
           # Otherwise all templates will be found when no tagged templates were found
@@ -46,7 +47,6 @@ module Spree
       end
 
       def show
-
       end
 
       private

@@ -10,7 +10,7 @@ module Spree
         tagged_with = params[:q].delete :tagged_with
 
         @templates = Spree::Template.ransack(params[:q]).result.joins(:designs).where("#{Spree::Design.table_name}.size = ?", size).select('spree_templates.*, spree_designs.id as design_id')
-        @templates = @templates.tagged_with(tagged_with, any: true) if tagged_with
+        @templates = @templates.tagged_with(tagged_with, :on => :tags, any: true) if tagged_with
         @templates = @templates.page(params[:page]).per(params[:per_page])
       end
 
@@ -20,7 +20,9 @@ module Spree
       end
 
       def tags
-        @tags = Spree::Template.display.tag_counts
+        params[:medium] ||= 'label,engraving'
+        mediums = params[:medium].split(',')
+        @tags = Spree::Template.display.where(medium: mediums).try(:tag_counts)
         render json: {tags: @tags}
       end
 
