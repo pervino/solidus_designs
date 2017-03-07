@@ -21,6 +21,7 @@ module Spree
           render_url = LIQUID_PIXEL_URL
           render_url += "?set=#{sku_param}"
           render_url += "&set=#{type_param}"
+          render_url += "&set=#{size_param}"
           render_url += "&set=#{design_url_param}"
           render_url += "&call=#{chain_param}"
           render_url += "&sink=#{sink_param}"
@@ -31,6 +32,14 @@ module Spree
 
         def sku_param
           "SKU[#{@product.sku.gsub(/-VAR-.*/, '')}]"
+        end
+
+        def size_param
+          if @options && @options.has_key?(:size)
+            "SIZE[#{@options[:size]}]"
+          else
+            "SIZE[FULL]"
+          end
         end
 
         def type_param
