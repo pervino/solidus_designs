@@ -1,7 +1,7 @@
 module Spree
   module Api
     class TemplateDesignsController < Spree::Api::BaseController
-      before_action :find_template_design, only: [:update]
+      before_action :find_template_design, only: [:update, :show]
 
       def index
         params[:q] ||= {}

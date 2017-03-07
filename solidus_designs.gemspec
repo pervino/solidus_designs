@@ -12,7 +12,7 @@
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.name = 'solidus_designs'
-  s.version = '2.0.0'
+  s.version = '2.0.1'
   s.required_ruby_version = '>= 2.1'
 
   s.author = ['Anthony Daddeo']
