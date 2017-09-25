@@ -21,18 +21,17 @@ onAddCustomization = (e) ->
   size = $(this).data('size')
   configuration_id = $(this).data('configuration-id')
   source_id = $(this).data('source-id')
-  user_id = $(this).data('user-id')
+  user_id = parseUserID()
   Routine.SelectDesign medium, size, user_id, (design) ->
     addCustomization(line_item_id, quantity, price, design, configuration_id, source_id)
 
 onEditCustomization = (e) ->
-  console.log("hi")
   e.preventDefault()
   line_item = $(this).closest('.line-item')
   line_item_id = line_item.data('line-item-id');
   design_id = $(this).data('design-id')
   customization_id = $(this).data('customization-id')
-  user_id = $(this).data('user-id')
+  user_id = parseUserID()
   Routine.CreateDesign design_id, user_id, (design) ->
     editCustomization(line_item_id, design.id, customization_id)
 
@@ -45,12 +44,12 @@ onChangeCustomization = (e) ->
   medium = $(this).data('medium')
   size = $(this).data('size')
   customization_id = $(this).data('customization-id')
-  user_id = $(this).data('user-id')
+  user_id = parseUserID()
   Routine.SelectDesign medium, size, user_id, (design) ->
     editCustomization(line_item_id, design.id, customization_id)
 
 $(document).ready ->
-  $('.line-item')
+  $('.line-items')
   .on('click', '.add-customization', onAddCustomization)
   .on('click', '.edit-customization', onEditCustomization)
   .on('click', '.change-customization', onChangeCustomization)
@@ -111,3 +110,8 @@ editCustomization = (line_item_id, design_id, customization_id) ->
         article_id: design_id
   ).done (msg) ->
     window.location.reload()
+
+# This is a hack, but I couldn't find another way to get the user_id
+# into the handlebars template.
+parseUserID = () ->
+  $("#order_user_link a").attr("href").match(/.*\/(\d+)\/.*/)

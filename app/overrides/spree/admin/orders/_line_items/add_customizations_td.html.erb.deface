@@ -1,4 +1,4 @@
-<!-- insert_before "[data-hook='line-items'] td.line-item-price" -->
+<!-- insert_after "[data-hook='line-items'] td.line-item-price" -->
 
 <td class="item-customizations">
   <% if item.customizations.any? %>
