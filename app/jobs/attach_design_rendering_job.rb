@@ -1,5 +1,5 @@
 class AttachDesignRenderingJob < ActiveJob::Base
-  queue_as :default
+  queue_as :high_priority
 
   def perform(design)
     design.rendering = URI.parse(design.render_url)
