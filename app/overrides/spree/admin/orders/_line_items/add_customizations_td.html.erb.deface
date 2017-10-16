@@ -22,6 +22,12 @@
                                customization_id: customization.id
                            }
           %>
+            <div style="margin-top: 5px;">
+              <label>
+                <%= check_box_tag :customization_is_non_standard, 1, customization.is_non_standard, class: "toggle-customization-non-standard", data: {customization_id: customization.id } %>
+                non-standard
+              </label>
+            </div>
           </div>
       <% end %>
   <% else %>
