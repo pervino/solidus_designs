@@ -8,10 +8,8 @@ module SpreeDesigns::ProductConcerns
   end
 
   module InstanceMethods
-
-    # Possibly call super here, though it may not be defined
-    def duplicate_extra(original)
-      Spree::Designs::ProductDuplicator.new(self, original).duplicate
+    def duplicate_extra(product)
+      Spree::Designs::ProductDuplicator.new(product, self).duplicate
     end
 
     def can_design?(designType = nil)
