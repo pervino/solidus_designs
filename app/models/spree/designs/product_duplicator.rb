@@ -10,8 +10,8 @@ module Spree
       end
 
       def duplicate
-        @new_product.design_configurations = @original_product.design_configurations.map { |design_configuration| duplicate_design_configuration(design_configuration) }
-        @new_product
+        new_product.design_configurations = original_product.design_configurations.map { |design_configuration| duplicate_design_configuration(design_configuration) }
+        new_product
       end
 
       protected
