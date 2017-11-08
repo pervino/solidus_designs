@@ -1,3 +1,3 @@
-json.cache! [root_object] do
-  json.extract! root_object, :id, :name, :medium, :popularity
+json.cache! [template] do
+  json.(template, :id, :name, :medium, :popularity)
 end
