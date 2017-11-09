@@ -1,4 +1,4 @@
-json.designs(@designs) do |design|
+json.array!(@designs) do |design|
   json.partial!("spree/api/designs/design", design: design)
 end
 
