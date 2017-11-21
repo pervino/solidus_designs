@@ -1,2 +1,0 @@
-set_attributes "td.tracking-value, .edit-tracking td[colspan='4']"
-attributes colspan: "5"
