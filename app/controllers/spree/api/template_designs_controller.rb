@@ -2,6 +2,8 @@ module Spree
   module Api
     class TemplateDesignsController < Spree::Api::BaseController
       before_action :find_template_design, only: [:update, :show]
+      skip_before_action :authenticate_user
+
 
       def index
         params[:q] ||= {}

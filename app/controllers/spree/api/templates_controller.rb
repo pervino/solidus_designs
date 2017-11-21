@@ -1,6 +1,7 @@
 module Spree
   module Api
     class TemplatesController < Spree::Api::BaseController
+      skip_before_action :authenticate_user
 
       def index
         params[:q] ||= {}

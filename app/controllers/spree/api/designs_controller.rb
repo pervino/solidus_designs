@@ -2,6 +2,7 @@ module Spree
   module Api
     class DesignsController < Spree::Api::BaseController
       before_action :find_design, only: [:update, :destroy, :show]
+      skip_before_action :authenticate_user
 
       def create
         authorize! :create, Design
