@@ -1,2 +1,0 @@
-set_attributes "td:not(.skip-expand)[colspan='5']"
-attributes colspan: "6"
