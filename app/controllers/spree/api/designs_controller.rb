@@ -39,7 +39,7 @@ module Spree
       end
 
       def destroy
-        authorize! :destroy, @design
+        # authorize! :destroy, @design
         @design.destroy
         respond_with(@design, status: 204)
       end
