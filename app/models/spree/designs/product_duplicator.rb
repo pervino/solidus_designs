@@ -2,7 +2,7 @@ module Spree
   module Designs
     class ProductDuplicator
 
-      mattr_accessor :original_product, :new_product
+      attr_reader :original_product, :new_product
 
       def initialize(original_product, new_product)
         @original_product = original_product
@@ -10,6 +10,7 @@ module Spree
       end
 
       def duplicate
+        binding.pry
         new_product.design_configurations = original_product.design_configurations.map { |design_configuration| duplicate_design_configuration(design_configuration) }
         new_product
       end
