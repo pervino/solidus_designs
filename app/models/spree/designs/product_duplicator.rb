@@ -2,7 +2,7 @@ module Spree
   module Designs
     class ProductDuplicator
 
-      mattr_accessor :original_product, :new_product
+      attr_reader :original_product, :new_product
 
       def initialize(original_product, new_product)
         @original_product = original_product

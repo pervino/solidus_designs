@@ -1,11 +1,8 @@
-<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Design Configurations'} %>
-
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Personlization'} %>
 <%= render :partial => 'spree/shared/error_messages', :locals => {:target => @design_option} %>
 
 <% content_for :page_title do %>
-    <br/>
-    <span style="margin-left: 10px">Design -</span>
-    Configurations / <%= @design_configuration.name %> / Options / New
+  New Design Option
 <% end %>
 
 <% content_for :page_actions do %>
@@ -15,9 +12,9 @@
 <% end %>
 
 <%= form_for [:admin, @design_configuration, @design_option] do |f| %>
-    <fieldset class="no-border-top">
+    <fieldset>
+      <legend>New Design Option</legend>
       <%= render :partial => 'form', :locals => {:f => f} %>
-      <div class="clear"></div>
       <%= render :partial => 'spree/admin/shared/new_resource_links' %>
     </fieldset>
 <% end %>

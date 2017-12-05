@@ -1,12 +1,11 @@
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Personlization'} %>
+<%= render :partial => 'spree/shared/error_messages', :locals => {:target => @design_option_image} %>
+
 <%= form_for [:admin, @design_option, @design_option_image], url: admin_design_option_images_path(@design_option), :html => {:multipart => true} do |f| %>
     <fieldset data-hook="new_image">
       <legend align="center"><%= Spree.t(:new_image) %></legend>
 
       <%= render :partial => 'form', :locals => {:f => f} %>
-
-      <div class="form-buttons filter-actions actions" data-hook="buttons">
-        <%= button Spree.t('actions.update'), 'refresh' %>
-        <%= link_to_with_icon 'remove', Spree.t('actions.cancel'), admin_design_option_images_url(@design_option), :id => 'cancel_link', :class => 'button' %>
-      </div>
+      <%= render :partial => 'spree/admin/shared/new_resource_links' %>
     </fieldset>
 <% end %>
