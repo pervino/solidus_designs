@@ -10,9 +10,11 @@ module Spree
         params[:q][:s] ||= ["template_popularity desc"]
         params[:q][:template_display_eq] ||= true
 
-        if params[:tagged_with]
-          templates = Spree::Template.tagged_with(params[:tagged_with], :on => :tags, any: true)
+        if params[:q][:tagged_with]
+          templates = Spree::Template.tagged_with(params[:q][:tagged_with], :on => :tags, any: true)
           params[:q][:template_id_in] = templates.pluck(:id)
+
+          binding.pry
 
           # Otherwise all templates will be found when no tagged templates were found
           if templates.any?
