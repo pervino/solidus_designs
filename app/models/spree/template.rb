@@ -5,6 +5,7 @@ module Spree
 
     has_many :template_designs
     has_many :designs, through: :template_designs
+    has_many :pins, foreign_key: :template_id
 
     scope :display, -> { where(display: true) }
 
