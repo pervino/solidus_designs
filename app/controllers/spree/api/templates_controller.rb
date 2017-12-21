@@ -10,7 +10,10 @@ module Spree
         size = params[:q].delete :size_eq
         tagged_with = params[:q].delete :tagged_with
 
-        @templates = Spree::Template.ransack(params[:q]).result.joins(:designs).where("#{Spree::Design.table_name}.size = ?", size).select('spree_templates.*, spree_designs.id as design_id')
+        @templates = Spree::Template.ransack(params[:q]).result
+          .joins(:designs)
+          .where("#{Spree::Design.table_name}.size = ?", size)
+          .select('spree_templates.*, spree_designs.id as design_id')
         @templates = @templates.tagged_with(tagged_with, :on => :tags, any: true) if tagged_with
         @templates = @templates.page(params[:page]).per(params[:per_page])
       end

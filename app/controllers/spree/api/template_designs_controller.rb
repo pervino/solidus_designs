@@ -4,15 +4,29 @@ module Spree
       before_action :find_template_design, only: [:update, :show]
       skip_before_action :authenticate_user
 
-
       def index
         params[:q] ||= {}
         params[:q][:s] ||= ["template_popularity desc"]
         params[:q][:template_display_eq] ||= true
 
+        # these assignments will be removed when refactor pins to Ransack
+        medium = params[:q][:template_medium_eq]
+        display = params[:q][:template_display_eq]
+        size = params[:q][:design_size_eq]
+
         if params[:q][:tagged_with]
-          templates = Spree::Template.tagged_with(params[:q][:tagged_with], :on => :tags, any: true)
+          # these conditional will be removed when refactor pins to Ransack
+          if params[:q][:tagged_with] != 'false'
+            tag = ActsAsTaggableOn::Tag.find_by(name: params[:q][:tagged_with])
+          else
+            tag = ActsAsTaggableOn::Tag.new(id: 0)
+          end   
+
+          # this is not being used anymore, but will be when refactor pins to Ransack
+          templates = Spree::Template.tagged_with(params[:q][:tagged_with], :on => :tags, any: true)   
           params[:q][:template_id_in] = templates.pluck(:id)
+          
+          # this is not being used anymore, but will be when refactor pins to Ransack
           # Otherwise all templates will be found when no tagged templates were found
           if templates.any?
             params[:q][:template_id_in] = templates.pluck(:id)
@@ -21,7 +35,10 @@ module Spree
           end
         end
 
-        @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
+        # this is not being used anymore, but will be when refactor pins to Ransack 
+        # @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
+        
+        @template_designs = Spree::TemplateDesign.tagged_and_pinned(tag, medium, display, size)
         @template_designs = @template_designs.page(params[:page]).per(params[:per_page])
       end
 
