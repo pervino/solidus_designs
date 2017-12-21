@@ -9,7 +9,6 @@ module Spree
         params[:q][:s] ||= ["template_popularity desc"]
         params[:q][:template_display_eq] ||= true
 
-        # these assignments will be removed when refactor pins to Ransack
         medium = params[:q][:template_medium_eq]
         display = params[:q][:template_display_eq]
         size = params[:q][:design_size_eq]
@@ -23,8 +22,8 @@ module Spree
           end   
 
           # this is not being used anymore, but will be when refactor pins to Ransack
-          templates = Spree::Template.tagged_with(params[:q][:tagged_with], :on => :tags, any: true)   
-          params[:q][:template_id_in] = templates.pluck(:id)
+          # templates = Spree::Template.tagged_with(params[:q][:tagged_with], :on => :tags, any: true)   
+          # params[:q][:template_id_in] = templates.pluck(:id)
           
           # this is not being used anymore, but will be when refactor pins to Ransack
           # Otherwise all templates will be found when no tagged templates were found
