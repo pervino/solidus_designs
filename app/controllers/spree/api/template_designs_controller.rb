@@ -14,18 +14,15 @@ module Spree
         size = params[:q][:design_size_eq]
 
         if params[:q][:tagged_with]
-          # these conditional will be removed when refactor pins to Ransack
           if params[:q][:tagged_with] != 'false'
             tag = ActsAsTaggableOn::Tag.find_by(name: params[:q][:tagged_with])
           else
             tag = ActsAsTaggableOn::Tag.new(id: 0)
           end   
 
-          # this is not being used anymore, but will be when refactor pins to Ransack
           templates = Spree::Template.tagged_with(params[:q][:tagged_with], :on => :tags, any: true)   
           params[:q][:template_id_in] = templates.pluck(:id)
           
-          # this is not being used anymore, but will be when refactor pins to Ransack
           # Otherwise all templates will be found when no tagged templates were found
           if templates.any?
             params[:q][:template_id_in] = templates.pluck(:id)
