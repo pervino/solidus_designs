@@ -31,10 +31,12 @@ module Spree
           end
         end
 
-        # this is not being used anymore, but will be when refactor pins to Ransack 
-        # @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
-        
-        @template_designs = Spree::TemplateDesign.tagged_and_pinned(tag, medium, display, size)
+        if params[:q][:tagged_with].length > 1
+          @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
+        else
+          @template_designs = Spree::TemplateDesign.tagged_and_pinned(tag, medium, display, size)
+        end
+
         @template_designs = @template_designs.page(params[:page]).per(params[:per_page])
       end
 
