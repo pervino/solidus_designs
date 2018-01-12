@@ -31,10 +31,14 @@ module Spree
           end
         end
 
-        if params[:q][:tagged_with].length > 1
-          @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
+        if params[:q][:tagged_with]
+          if params[:q][:tagged_with].is_a?(Array) && params[:q][:tagged_with].length > 1
+            @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
+          else
+            @template_designs = Spree::TemplateDesign.tagged_and_pinned(tag, medium, display, size)
+          end
         else
-          @template_designs = Spree::TemplateDesign.tagged_and_pinned(tag, medium, display, size)
+          @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
         end
 
         @template_designs = @template_designs.page(params[:page]).per(params[:per_page])
