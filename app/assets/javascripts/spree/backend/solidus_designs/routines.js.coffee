@@ -38,6 +38,25 @@ CreateDesign = (source_design_id, user_id, callback) ->
   new IframeModalLauncher('/components/create_design', props, routineCallbacks, modalSettings)
 
 
+EditDesign = (source_design_id, user_id, callback) ->
+  props =
+    design_id: source_design_id
+    lablrSettings:
+      admin: true
+
+  modalSettings =
+    modalClasses: 'modal-lg'
+    modalStyles: {height: "670px"}
+  
+  routineCallbacks =
+    save: (rawDesign, sourceDesign) ->
+      req = Api.Pervino.Design.update source_design_id, rawDesign
+      req.done (data) ->
+        callback data
+
+  new IframeModalLauncher('/components/create_design', props, routineCallbacks, modalSettings)
+
 @Routine =
   CreateDesign: CreateDesign
   SelectDesign: SelectDesign
+  EditDesign: EditDesign
