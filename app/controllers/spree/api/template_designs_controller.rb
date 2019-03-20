@@ -15,14 +15,18 @@ module Spree
 
         if params[:q][:tagged_with]
           if params[:q][:tagged_with] != 'false'
-            tag = ActsAsTaggableOn::Tag.find_by(name: params[:q][:tagged_with])
+            if params[:q][:tagged_with] != 'true'
+              tag = ActsAsTaggableOn::Tag.find_by(name: params[:q][:tagged_with])
+            else
+              tag = ActsAsTaggableOn::Tag.new(id: 0)
+            end
           else
             tag = ActsAsTaggableOn::Tag.new(id: 0)
-          end   
+          end
 
-          templates = Spree::Template.tagged_with(params[:q][:tagged_with], :on => :tags, any: true)   
+          templates = Spree::Template.tagged_with(params[:q][:tagged_with], :on => :tags, any: true)
           params[:q][:template_id_in] = templates.pluck(:id)
-          
+
           # Otherwise all templates will be found when no tagged templates were found
           if templates.any?
             params[:q][:template_id_in] = templates.pluck(:id)
