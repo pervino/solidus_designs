@@ -5,18 +5,19 @@ module Spree
       skip_before_action :authenticate_user
 
       def index
+        # binding.pry
         params[:q] ||= {}
         params[:q][:s] ||= ["template_popularity desc"]
         params[:q][:template_display_eq] ||= true
 
-        medium = params[:q][:template_medium_eq]
-        display = params[:q][:template_display_eq]
-        size = params[:q][:design_size_eq]
+        medium = params[:template_medium_eq]
+        display = params[:template_display_eq]
+        size = params[:design_size_eq]
 
-        if params[:q][:tagged_with]
-          if params[:q][:tagged_with] != 'false'
-            if params[:q][:tagged_with] != 'true'
-              tag = ActsAsTaggableOn::Tag.find_by(name: params[:q][:tagged_with])
+        if params[:tagged_with]
+          if params[:tagged_with] != 'false'
+            if params[:tagged_with] != 'true'
+              tag = ActsAsTaggableOn::Tag.find_by(name: params[:tagged_with])
             else
               tag = ActsAsTaggableOn::Tag.new(id: 0)
             end
@@ -24,7 +25,7 @@ module Spree
             tag = ActsAsTaggableOn::Tag.new(id: 0)
           end
 
-          templates = Spree::Template.tagged_with(params[:q][:tagged_with], :on => :tags, any: true)
+          templates = Spree::Template.tagged_with(params[:tagged_with], :on => :tags, any: true)
           params[:q][:template_id_in] = templates.pluck(:id)
 
           # Otherwise all templates will be found when no tagged templates were found
@@ -35,8 +36,8 @@ module Spree
           end
         end
 
-        if params[:q][:tagged_with]
-          if params[:q][:tagged_with].is_a?(Array) && params[:q][:tagged_with].length > 1
+        if params[:tagged_with]
+          if params[:tagged_with].is_a?(Array) && params[:tagged_with].length > 1
             @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
           else
             @template_designs = Spree::TemplateDesign.tagged_and_pinned(tag, medium, display, size)
@@ -44,8 +45,27 @@ module Spree
         else
           @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
         end
+        # @template_designs = @template_designs.where(size: params[:design_size_eq])
+        # @template_designs = @template_designs.where(medium: params[:template_medium_eq])
+        # binding.pry
 
+        # @template_designs.each do |template, index|
+        #   if Spree::Design.find_by(template.design_id).size != sizeSimple
+        #     @template_designs.delete_at(index)
+        #   end
+        # end
+        # @template_designs.each do |template, index|
+        #   if Spree::Design.find_by(template.design_id).medium != mediumSimple
+        #     @template_designs.delete_at(index)
+        #   end
+        # end
+        ## need to cull this down by removing designs that are the size and medium
+        # @template_designs = Spree::TemplateDesign.includes(:template, :design).ransack(params[:q]).result
         @template_designs = @template_designs.page(params[:page]).per(params[:per_page])
+      end
+
+      def list
+
       end
 
       def create

@@ -54,17 +54,29 @@ module Spree
       end
 
       def mine
+        # binding.pry
         params[:q] ||= {}
 
         if current_api_user && current_api_user.persisted?
           params[:q][:user_id_eq] = current_api_user.id
         else
-          params[:q][:guest_token_eq] = cookies.signed[:guest_token]
+          # binding.pry
+          params[:q][:user_id_eq] = params[:user_id_eq]
         end
 
+        ## May just construct my own json because this is fucking stupid
         @designs = Spree::Design.includes(:template).ransack(params[:q]).result
+        @designs = @designs.where(size: params[:design_size_eq])
+        @designs = @designs.where(medium: params[:template_medium_eq])
+
         @designs = @designs.page(params[:page]).per(params[:per_page])
+        # binding.pry
         respond_with(@designs, default_template: 'index')
+      end
+
+      def list
+        # binding.pry
+
       end
 
       private
@@ -90,6 +102,7 @@ module Spree
       end
 
       def permitted_params
+        # binding.pry
         attributes = can?(:admin, Spree::Design) ? admin_permitted_attributes : permitted_attributes
         params.require(:design).permit *attributes
       end
