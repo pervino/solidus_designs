@@ -54,13 +54,11 @@ module Spree
       end
 
       def mine
-        # binding.pry
         params[:q] ||= {}
 
         if current_api_user && current_api_user.persisted?
           params[:q][:user_id_eq] = current_api_user.id
         else
-          # binding.pry
           params[:q][:user_id_eq] = params[:user_id_eq]
         end
 
@@ -70,14 +68,9 @@ module Spree
         @designs = @designs.where(medium: params[:template_medium_eq])
 
         @designs = @designs.page(params[:page]).per(params[:per_page])
-        # binding.pry
         respond_with(@designs, default_template: 'index')
       end
 
-      def list
-        # binding.pry
-
-      end
 
       private
 

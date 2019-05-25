@@ -30,10 +30,10 @@ Spree::Core::Engine.routes.draw do
       get :tags, on: :collection
     end
 
-    get 'designs/list', to: "designs#list"
 
     resources :designs do
       get :mine, on: :collection
+      get '/single', to: "designs#single"
     end
 
     resources :template_designs, only: [:index, :create, :update, :show]
