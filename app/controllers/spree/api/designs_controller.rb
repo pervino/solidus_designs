@@ -3,7 +3,7 @@ module Spree
     class DesignsController < Spree::Api::BaseController
       before_action :find_design, only: [:update, :destroy, :show]
       after_filter :cors_set_access_control_headers
-      skip_before_action :authenticate_user, :only => [:route_options]
+      skip_before_filter :authenticate_user, :only => [:route_options]
 
       def route_options
         cors_preflight_check
