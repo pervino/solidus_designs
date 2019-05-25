@@ -2,12 +2,9 @@ module Spree
   module Api
     class DesignsController < Spree::Api::BaseController
       before_action :find_design, only: [:update, :destroy, :show]
-      after_filter :cors_set_access_control_headers
-      skip_before_filter :authenticate_user, :only => [:route_options]
-
-      def route_options
-        cors_preflight_check
-      end
+      before_action :cors_preflight_check
+      after_action :cors_set_access_control_headers
+      skip_before_action :authenticate_user
 
       def create
         authorize! :create, Design
@@ -71,7 +68,7 @@ module Spree
         @designs = Spree::Design.includes(:template).ransack(params[:q]).result
         @designs = @designs.where(size: params[:design_size_eq])
         @designs = @designs.where(medium: params[:template_medium_eq])
-
+        # binding.pry
         @designs = @designs.page(params[:page]).per(params[:per_page])
         respond_with(@designs, default_template: 'index')
       end
@@ -124,10 +121,11 @@ module Spree
         if request.method == 'OPTIONS'
           request.headers['Access-Control-Allow-Origin'] = '*'
           request.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
-          request.headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token, Auth-Token, Email'
+          request.headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Spree-Token, X-Prototype-Version, Token, Auth-Token, Email'
           request.headers['Access-Control-Max-Age'] = '1728000'  
           render :text => '', :content_type => 'application/json'
         end
+      end
     end
   end
 end

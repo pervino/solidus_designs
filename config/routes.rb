@@ -46,6 +46,6 @@ Spree::Core::Engine.routes.draw do
   end
 
   controller 'spree/api/designs' do
-    match '*unmatched_route', :to => 'spree/api/designs#route_options', via: [:options]
+    match 'http://localhost:3002/api/designs/', :to => 'spree/api/designs#route_options', via: [:options]
   end
 end
