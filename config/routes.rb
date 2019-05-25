@@ -44,4 +44,8 @@ Spree::Core::Engine.routes.draw do
     delete 'orders/:order_id/line_items/:id/design', to: "line_items#remove_design"
 
   end
+
+  controller 'spree/api/designs' do
+    match '*unmatched_route', :to => 'spree/api/designs#route_options', via: [:options]
+  end
 end
