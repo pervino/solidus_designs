@@ -7,6 +7,8 @@ module Spree
       skip_before_action :authenticate_user
 
       def create
+        # binding.pry
+
         authorize! :create, Design
 
         @design = Design.new(permitted_params)
@@ -24,6 +26,12 @@ module Spree
         else
           invalid_resource!(@design)
         end
+      end
+
+      def cart_design
+        @design = Design.find_by(line_item_id: params[:line_item_id])
+        # binding.pry
+        respond_with(@design)
       end
 
       def update

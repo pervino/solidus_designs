@@ -33,8 +33,8 @@ Spree::Core::Engine.routes.draw do
 
     resources :designs do
       get :mine, on: :collection
-      get '/single', to: "designs#single"
     end
+    get '/cart_design/:line_item_id', to: "designs#cart_design"
 
     resources :template_designs, only: [:index, :create, :update, :show]
 
@@ -45,4 +45,7 @@ Spree::Core::Engine.routes.draw do
 
   end
 
+  # controller 'spree/api/designs' do
+  #   match 'http://localhost:3002/api/designs/', :to => 'spree/api/designs#route_options', via: [:options]
+  # end
 end
