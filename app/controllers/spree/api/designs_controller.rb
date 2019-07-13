@@ -28,11 +28,11 @@ module Spree
         end
       end
 
-      def cart_design
-        @design = Design.find_by(line_item_id: params[:line_item_id])
-        # binding.pry
-        respond_with(@design)
-      end
+      # def cart_design
+      #   @design = Design.find_by(line_item_id: params[:line_item_id])
+      #   # binding.pry
+      #   respond_with(@design)
+      # end
 
       def update
         authorize! :update, @design
