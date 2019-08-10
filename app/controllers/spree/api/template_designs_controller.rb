@@ -2,6 +2,8 @@ module Spree
   module Api
     class TemplateDesignsController < Spree::Api::BaseController
       before_action :find_template_design, only: [:update, :show]
+      before_action :cors_preflight_check
+      after_action :cors_set_access_control_headers
       skip_before_action :authenticate_user
 
       def index
@@ -105,6 +107,23 @@ module Spree
 
       def permitted_attributes
         can?(:admin, Spree::TemplateDesign) ? [:template_id, :design_id] : []
+      end
+
+      def cors_set_access_control_headers
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token, Auth-Token, Email'
+        response.headers['Access-Control-Max-Age'] = "1728000"
+      end
+         
+      def cors_preflight_check
+        if request.method == 'OPTIONS'
+          request.headers['Access-Control-Allow-Origin'] = '*'
+          request.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
+          request.headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Spree-Token, X-Prototype-Version, Token, Auth-Token, Email'
+          request.headers['Access-Control-Max-Age'] = '1728000'  
+          render :text => '', :content_type => 'application/json'
+        end
       end
     end
   end
