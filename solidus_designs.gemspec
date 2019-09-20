@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'paranoia', '~> 2.1'
   s.add_dependency 'delayed_job'
   s.add_dependency 'aws-sdk'
-  s.add_dependency 'paperclip', '~> 4.2.0'
+  s.add_dependency 'paperclip' 
   s.add_dependency 'warden'
 
   s.add_development_dependency "rspec-rails", "~> 3.2"
