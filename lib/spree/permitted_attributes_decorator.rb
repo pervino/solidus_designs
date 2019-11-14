@@ -2,7 +2,7 @@ Spree::PermittedAttributes.module_eval do
   mattr_accessor :design_attributes, :template_attributes, :template_design_attributes
 
   class_variable_set(:@@design_attributes, [
-      :user_id, :medium, :name, :size, :markup, :render_url, :source_id, :template_id
+      :user_id, :medium, :name, :size, :markup, :render_url, :source_id, :template_id, :engraving_fill_color
   ])
 
   class_variable_set(:@@template_attributes, [
