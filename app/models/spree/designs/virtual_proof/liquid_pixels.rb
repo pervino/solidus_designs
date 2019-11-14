@@ -10,6 +10,7 @@ module Spree
         }
 
         def initialize(product, design, options = {})
+          binding.pry
           @product = product
           @design = design
           @options = DEFAULTS.merge options
