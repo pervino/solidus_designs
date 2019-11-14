@@ -50,10 +50,10 @@ module Spree
         end
 
         def fill_param
-          if @design.fill
-            "FILL[#{@design.fill}]"
-          else 
+          if @design.fill == ""
             'blank'
+          else 
+            "FILL[#{@design.fill}]"
           end
         end
 
