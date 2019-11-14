@@ -27,6 +27,10 @@ module Spree
       super(url)
     end
 
+    def fill 
+      self.engraving_fill_color
+    end
+
     private
 
     def attach_rendering
