@@ -15,6 +15,8 @@ module Spree
           associate_user
         end
 
+        binding.pry
+
         if @design.save
           # Clear the designs template as the selected template
           (session[:current_template] ||= {})[@design.size.to_sym] = nil
