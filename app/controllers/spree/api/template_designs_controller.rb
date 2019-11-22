@@ -49,6 +49,7 @@ module Spree
       end
 
       def create
+        binding.pry
         authorize! :create, TemplateDesign
 
         @template_design = TemplateDesign.new(permitted_params)
