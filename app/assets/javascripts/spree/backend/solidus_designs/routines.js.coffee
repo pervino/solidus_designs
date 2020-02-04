@@ -1,7 +1,8 @@
-SelectDesign = (medium, size, user_id, callback) ->
+SelectDesign = (medium, size, user_id, simple_designer, callback) ->
   props =
     medium: medium
     size: size
+    simple_designer: simple_designer
 
   props.user_id = user_id if user_id
 
