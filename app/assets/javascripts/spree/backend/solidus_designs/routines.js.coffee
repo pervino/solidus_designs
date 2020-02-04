@@ -1,6 +1,6 @@
 SelectDesign = (medium, size, user_id, simple_designer={}, callback) ->
   props =
-    medium: "FUCK"
+    medium: medium
     size: size
     simple_designer: simple_designer
 
