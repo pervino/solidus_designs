@@ -14,19 +14,20 @@ SelectDesign = (medium, size, user_id, simple_designer={}, callback) ->
     select: (design) ->
       callback design
     create: (sourceDesign) ->
-      CreateDesign sourceDesign.id, user_id, (design) ->
+      CreateDesign sourceDesign.id, user_id, simple_designer, (design) ->
         callback design
 
   new IframeModalLauncher('/components/select_design', props, routineCallbacks, modalSettings)
 
 
-CreateDesign = (source_design_id, user_id, callback) ->
+CreateDesign = (source_design_id, user_id, simple_designer, callback) ->
   console.log("SOLIDUS_DESIGNS CREADTEDESIGN")
+  console.log("SOLIDUS_DESIGNS callback", callback)
   props =
     design_id: source_design_id
     lablrSettings:
       admin: true
-      fuck_a_duck: 'fuck_a_duck'
+      simple_designer: simple_designer
 
   modalSettings =
     modalClasses: 'modal-lg'
