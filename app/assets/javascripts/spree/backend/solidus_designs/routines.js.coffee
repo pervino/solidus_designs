@@ -26,6 +26,7 @@ CreateDesign = (source_design_id, user_id, callback) ->
     design_id: source_design_id
     lablrSettings:
       admin: true
+      fuck_a_duck: 'fuck_a_duck'
 
   modalSettings =
     modalClasses: 'modal-lg'
