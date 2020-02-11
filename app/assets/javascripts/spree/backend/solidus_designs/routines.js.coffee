@@ -1,4 +1,4 @@
-SelectDesign = (medium, size, user_id, simple_designer={}, callback) ->
+SelectDesign = (medium, size, user_id, simple_designer={simple_designer: false}, callback) ->
   props =
     medium: medium
     size: size
@@ -22,7 +22,7 @@ SelectDesign = (medium, size, user_id, simple_designer={}, callback) ->
   new IframeModalLauncher('/components/select_design', props, routineCallbacks, modalSettings)
 
 
-CreateDesign = (source_design_id, user_id, simple_designer, callback) ->
+CreateDesign = (source_design_id, user_id, simple_designer={simple_designer: false}, callback) ->
   console.log("SOLIDUS_DESIGNS CREADTEDESIGN")
   console.log("SOLIDUS_DESIGNS callback", callback)
   props =
