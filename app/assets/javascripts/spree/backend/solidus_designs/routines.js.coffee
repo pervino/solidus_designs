@@ -17,6 +17,7 @@ SelectDesign = (medium, size, user_id, simple_designer={}, callback) ->
       CreateDesign sourceDesign.id, user_id, simple_designer, (design) ->
         callback design
   console.log('routines props', props)
+  console.log('routines routineCallbacks', routineCallbacks)
 
   new IframeModalLauncher('/components/select_design', props, routineCallbacks, modalSettings)
 
