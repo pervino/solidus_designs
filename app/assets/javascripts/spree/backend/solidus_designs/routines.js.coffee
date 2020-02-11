@@ -16,15 +16,11 @@ SelectDesign = (medium, size, user_id, simple_designer={simple_designer: false},
     create: (sourceDesign) ->
       CreateDesign sourceDesign.id, user_id, simple_designer, (design) ->
         callback design
-  console.log('routines props', props)
-  console.log('routines routineCallbacks', routineCallbacks)
 
   new IframeModalLauncher('/components/select_design', props, routineCallbacks, modalSettings)
 
 
 CreateDesign = (source_design_id, user_id, simple_designer={simple_designer: false}, callback) ->
-  console.log("SOLIDUS_DESIGNS CREADTEDESIGN")
-  console.log("SOLIDUS_DESIGNS callback", callback)
   props =
     design_id: source_design_id
     lablrSettings:
