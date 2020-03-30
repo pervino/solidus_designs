@@ -1,4 +1,4 @@
-SelectDesign = (medium, size, user_id, callback) ->
+SelectDesign = (medium, size, user_id, simple_designer={simple_designer: false}, callback) ->
   props =
     medium: medium
     size: size
@@ -13,17 +13,18 @@ SelectDesign = (medium, size, user_id, callback) ->
     select: (design) ->
       callback design
     create: (sourceDesign) ->
-      CreateDesign sourceDesign.id, user_id, (design) ->
+      CreateDesign sourceDesign.id, user_id, simple_designer, (design) ->
         callback design
 
   new IframeModalLauncher('/components/select_design', props, routineCallbacks, modalSettings)
 
 
-CreateDesign = (source_design_id, user_id, callback) ->
+CreateDesign = (source_design_id, user_id, simple_designer={simple_designer: false}, callback) ->
   props =
     design_id: source_design_id
     lablrSettings:
       admin: true
+      simple_designer: simple_designer
 
   modalSettings =
     modalClasses: 'modal-lg'

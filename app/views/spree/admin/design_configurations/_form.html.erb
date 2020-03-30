@@ -37,4 +37,26 @@
       <%= f.label :description %>
       <%= f.text_area :description, class: 'fullwidth', rows: 6 %>
   <% end %>
+
+  <%= f.field_container :simple_designer do %>
+    <%= f.label :simple_designer do %>
+      <%= f.check_box :simple_designer %>
+      <%= Spree::Variant.human_attribute_name(:simple_designer) %>
+    <% end %>
+  <% end %>
+
+  <%= f.field_container :simple_canvas_height do %>
+      <%= f.label :simple_canvas_height %>
+      <%= f.text_field :simple_canvas_height, class: 'form-control' %>
+  <% end %>
+
+  <%= f.field_container :simple_canvas_width do %>
+      <%= f.label :simple_canvas_width %>
+      <%= f.text_field :simple_canvas_width, class: 'form-control' %>
+  <% end %>
+
+  <%= f.field_container :number_of_lines do %>
+      <%= f.label :number_of_lines %>
+      <%= f.text_field :number_of_lines, class: 'form-control' %>
+  <% end %>
 </div>
