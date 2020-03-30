@@ -2,7 +2,8 @@ onCloneDesign = (e) ->
   e.preventDefault()
   design_id = $(this).data('design-id')
   user_id = $(this).data('user-id')
-  Routine.CreateDesign design_id, user_id, (design) ->
+  
+  Routine.CreateDesign design_id, user_id, {simple_designer: false}, (design) ->
     window.location.reload()
 
 onDeleteDesign = (e) ->
