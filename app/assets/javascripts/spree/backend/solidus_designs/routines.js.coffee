@@ -20,6 +20,7 @@ SelectDesign = (medium, size, user_id, callback) ->
 
 
 CreateDesign = (source_design_id, user_id, callback) ->
+  console.log('hello????????? solidus_designs')
   props =
     design_id: source_design_id
     lablrSettings:
