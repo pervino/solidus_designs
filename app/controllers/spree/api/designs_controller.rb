@@ -26,6 +26,7 @@ module Spree
 
       def update
         authorize! :update, @design
+        binding.pry
 
         if params[:force]
           @design.skip_line_item_touch = params[:force]
