@@ -62,7 +62,6 @@ module Spree
 
       def update
         authorize! :update, @template_design
-        binding.pry
         if @template_design.update_attributes(permitted_params)
           respond_with(@template_design, default_template: :show)
         else
