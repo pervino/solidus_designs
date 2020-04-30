@@ -1,8 +1,7 @@
-SelectDesign = (medium, size, user_id, admin, callback) ->
+SelectDesign = (medium, size, user_id, callback) ->
   props =
     medium: medium
     size: size
-    options: {admin}
   props.user_id = user_id if user_id
 
   modalSettings =
@@ -10,12 +9,12 @@ SelectDesign = (medium, size, user_id, admin, callback) ->
     modalStyles: {height: "80vh"}
 
   routineCallbacks =
-    select: (design, options) ->
+    select: (design) ->
       console.log("SOLIDUS DESIGNS SELECT ROUTINE CALLBACK")
       console.log(options)
-      callback design, options
+      callback design, "select"
     create: (sourceDesign) ->
-      callback sourceDesign
+      callback sourceDesign, "create"
 
   new IframeModalLauncher('/components/select_design', props, routineCallbacks, modalSettings)
 
