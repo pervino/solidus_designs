@@ -1,8 +1,8 @@
-SelectDesign = (medium, size, user_id, callback) ->
+SelectDesign = (medium, size, user_id, admin, callback) ->
   props =
     medium: medium
     size: size
-
+    options: {admin}
   props.user_id = user_id if user_id
 
   modalSettings =
@@ -11,7 +11,6 @@ SelectDesign = (medium, size, user_id, callback) ->
 
   routineCallbacks =
     select: (design) ->
-      console.log('routines select design SELECT design')
       callback design
     create: (sourceDesign) ->
       callback sourceDesign
@@ -20,7 +19,6 @@ SelectDesign = (medium, size, user_id, callback) ->
 
 
 CreateDesign = (source_design_id, sku, user_id, callback) ->
-  console.log('routines select design CREATE design')
   props =
     design_id: source_design_id,
     sku: sku
