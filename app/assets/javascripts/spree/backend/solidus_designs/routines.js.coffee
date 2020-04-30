@@ -10,9 +10,10 @@ SelectDesign = (medium, size, user_id, admin, callback) ->
     modalStyles: {height: "80vh"}
 
   routineCallbacks =
-    select: (design) ->
+    select: (design, options) ->
       console.log("SOLIDUS DESIGNS SELECT ROUTINE CALLBACK")
-      callback design
+      console.log(options)
+      callback design, options
     create: (sourceDesign) ->
       callback sourceDesign
 
