@@ -10,7 +10,6 @@ SelectDesign = (medium, size, user_id, callback) ->
 
   routineCallbacks =
     select: (design) ->
-      console.log("SOLIDUS DESIGNS SELECT ROUTINE CALLBACK")
       callback design, "select"
     create: (sourceDesign) ->
       callback sourceDesign, "create"
