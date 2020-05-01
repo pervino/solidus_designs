@@ -2,7 +2,6 @@ SelectDesign = (medium, size, user_id, callback) ->
   props =
     medium: medium
     size: size
-
   props.user_id = user_id if user_id
 
   modalSettings =
@@ -11,17 +10,17 @@ SelectDesign = (medium, size, user_id, callback) ->
 
   routineCallbacks =
     select: (design) ->
-      callback design
+      callback design, "select"
     create: (sourceDesign) ->
-      CreateDesign sourceDesign.id, user_id, (design) ->
-        callback design
+      callback sourceDesign, "create"
 
   new IframeModalLauncher('/components/select_design', props, routineCallbacks, modalSettings)
 
 
-CreateDesign = (source_design_id, user_id, callback) ->
+CreateDesign = (source_design_id, sku, user_id, callback) ->
   props =
-    design_id: source_design_id
+    design_id: source_design_id,
+    sku: sku
     lablrSettings:
       admin: true
 
@@ -38,6 +37,25 @@ CreateDesign = (source_design_id, user_id, callback) ->
   new IframeModalLauncher('/components/create_design', props, routineCallbacks, modalSettings)
 
 
+EditDesign = (source_design_id, user_id, callback) ->
+  props =
+    design_id: source_design_id
+    lablrSettings:
+      admin: true
+
+  modalSettings =
+    modalClasses: 'modal-lg'
+    modalStyles: {height: "670px"}
+  
+  routineCallbacks =
+    save: (rawDesign, sourceDesign) ->
+      req = Api.Pervino.Design.update source_design_id, rawDesign
+      req.done (data) ->
+        callback data
+
+  new IframeModalLauncher('/components/create_design', props, routineCallbacks, modalSettings)
+
 @Routine =
   CreateDesign: CreateDesign
   SelectDesign: SelectDesign
+  EditDesign: EditDesign

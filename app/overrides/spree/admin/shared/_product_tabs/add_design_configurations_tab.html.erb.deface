@@ -1,5 +1,5 @@
 <!-- insert_bottom "[data-hook='admin_product_tabs']" -->
 
-<%= content_tag :li, :class => ('active' if current == 'Design Configurations') do %>
-    <%= link_to_with_icon 'pencil', 'Design Configurations', admin_product_design_configurations_url(@product) %>
+<%= content_tag :li, :class => ('active' if current == 'Personalization') do %>
+    <%= link_to_with_icon 'pencil', 'Personalization', admin_product_design_configurations_url(@product) %>
 <% end if can?(:admin, Spree::DesignConfiguration) %>

@@ -1,32 +1,64 @@
-<div class="alpha eight columns">
-  <div class="row">
-    <div class="alpha four columns">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-      <small>Appears under the "Select a Customization" dropdown</small>
+<div class="row">
+  <div class="col-7">
+    <div class="row">
+      <div class="col-6">
+        <%= f.field_container :name do %>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+          <small>Appears under the "Select a Customization" dropdown</small>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <%= f.field_container :label do %>
+          <%= f.label :label %><br/>
+          <%= f.text_field :label, class: 'form-control' %>
+          <small>Labels the associated charge in the order summary</small>
+        <% end %>
+      </div>
     </div>
-    <div class="omega four columns">
-      <%= f.label :label %><br/>
-      <%= f.text_field :label, class: 'form-control' %>
-      <small>Labels the associated charge in the order summary</small>
+    <div class="row">
+      <div class="col-6">
+        <%= f.field_container :medium do %>
+          <%= f.label :medium %><br/>
+          <%= f.select :medium, Spree::Designs::Config.mediums.collect { |s| [s.to_s.titlecase, s] }, {}, class: 'select2 fullwidth' %>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <%= f.field_container :tags do %>
+          <%= f.label :tags %><br/>
+          <%= f.select :tag_list, Spree::Template.tag_counts.collect { |tag| [tag.name, tag.name] }, {}, class: 'select2 fullwidth', multiple: true %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="alpha four columns">
-      <%= f.label :medium %><br/>
-      <%= f.select :medium, Spree::Designs::Config.mediums.collect { |s| [s.to_s.titlecase, s] }, {}, class: 'select2 fullwidth' %>
-    </div>
-    <div class="omega four columns">
-      <%= f.label :tags %><br/>
-      <%= f.select :tag_list, Spree::Template.tag_counts.collect { |tag| [tag.name, tag.name] }, {}, class: 'select2 fullwidth', multiple: true %>
-    </div>
+  <div class="col-5">
+    <%= f.field_container :description do %>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'fullwidth', rows: 6 %>
+    <% end %>
   </div>
-</div>
-<div class="omega offset-by-one eight columns">
-  <%= f.label :description %>
-  <%= f.text_area :description, class: 'fullwidth', rows: 6 %>
-</div>
 
-<div class="clear"></div>
+  <%= f.field_container :simple_designer do %>
+    <%= f.label :simple_designer do %>
+      <%= f.check_box :simple_designer %>
+      <%= Spree::Variant.human_attribute_name(:simple_designer) %>
+    <% end %>
+  <% end %>
+
+  <%= f.field_container :simple_canvas_height do %>
+      <%= f.label :simple_canvas_height %>
+      <%= f.text_field :simple_canvas_height, class: 'form-control' %>
+  <% end %>
+
+  <%= f.field_container :simple_canvas_width do %>
+      <%= f.label :simple_canvas_width %>
+      <%= f.text_field :simple_canvas_width, class: 'form-control' %>
+  <% end %>
+
+  <%= f.field_container :number_of_lines do %>
+      <%= f.label :number_of_lines %>
+      <%= f.text_field :number_of_lines, class: 'form-control' %>
+  <% end %>
+</div>
 
 <%= render 'spree/admin/shared/calculator_fields', :f => f %>

@@ -1,1 +1,1 @@
-Spree::Product.include Spree::Design::ProductConcerns
+Spree::Product.include SpreeDesigns::ProductConcerns

@@ -1,1 +1,1 @@
-Spree::User.include Spree::Design::UserConcerns
+Spree::User.include SpreeDesigns::UserConcerns

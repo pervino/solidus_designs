@@ -1,9 +1,7 @@
-<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Design Configurations' } %>
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Personalization' } %>
 
 <% content_for :page_title do %>
-    <br/>
-    <span style="margin-left: 10px">Design -</span>
-    Configurations / <%= @design_configuration.name %> / Options
+  Design Options
 <% end %>
 
 <% content_for :page_actions do %>
@@ -24,9 +22,10 @@
       </colgroup>
       <thead>
       <tr>
-        <th colspan="2">
-          Name
-        </th>
+        <th></th>
+        <th>Name</th>
+        <th></th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -37,7 +36,10 @@
                   <span class="handle"></span>
               <% end %>
             </td>
-            <td class="align-center"><%= option.name %></td>
+            <td><%= option.name %></td>
+            <td class="actions">
+              <%= link_to "Images", admin_design_option_images_url(option) %>
+            </td>
             <td class="actions">
               <% if can?(:update, option) %>
                   <%= link_to_edit option, url: edit_admin_design_configuration_design_option_path(@design_configuration, option), :no_text => true %>
@@ -49,4 +51,10 @@
       <% end %>
       </tbody>
     </table>
+<% else %>
+  <div class="col-9 no-objects-found">
+    <%= render 'spree/admin/shared/no_objects_found',
+              resource: Spree::DesignOption,
+              new_resource_url: new_admin_design_configuration_design_option_path(@design_configuration) %>
+  </div>
 <% end %>

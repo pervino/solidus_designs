@@ -30,11 +30,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'solidus_backend', '~> 2.0'
   s.add_dependency 'solidus_customizations'
   s.add_dependency 'solidus_auth_devise'
-  s.add_dependency 'acts-as-taggable-on', '~> 4'
+  s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'paranoia', '~> 2.1'
   s.add_dependency 'delayed_job'
   s.add_dependency 'aws-sdk'
-  s.add_dependency 'paperclip', '~> 4.2.0'
+  s.add_dependency 'paperclip'
   s.add_dependency 'warden'
 
   s.add_development_dependency "rspec-rails", "~> 3.2"

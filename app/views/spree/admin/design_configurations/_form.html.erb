@@ -1,12 +1,12 @@
-<div class="alpha eight columns">
+<div data-hook="admindesign_configuration_form_fields">
   <div class="row">
-    <div class="alpha four columns">
+    <div class="col-4">
       <%= f.field_container :name do %>
           <%= f.label :name %>
           <%= f.text_field :name, class: 'form-control' %>
       <% end %>
     </div>
-    <div class="omega four columns">
+    <div class="col-4">
       <%= f.field_container :size do %>
           <%= f.label :size %>
           <%= f.select :size, Spree::Designs::Config.sizes.collect { |s| [s.to_s.titlecase, s] }, {}, class: 'select2 fullwidth' %>
@@ -14,23 +14,20 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="alpha four columns">
-      <%= f.field_container :required do %>
-          <%= f.label :required %>
-          <%= f.check_box :required, class: 'checkbox' %>
-      <% end %>
-    </div>
-    <div class="omega four columns">
-      <%= f.field_container :virtual_proofable do %>
-          <%= f.label :virtual_proofable %>
-          <%= f.check_box :virtual_proofable, class: 'checkbox' %>
-      <% end %>
-    </div>
-  </div>
-</div>
+  <%= f.field_container :required do %>
+    <%= f.label :required do %>
+      <%= f.check_box :required %>
+      <%= Spree::Variant.human_attribute_name(:required) %>
+    <% end %>
+  <% end %>
 
-<div class="omega offset-by-one eight columns">
+  <%= f.field_container :required do %>
+    <%= f.label :virtual_proofable do %>
+      <%= f.check_box :virtual_proofable %>
+      <%= Spree::Variant.human_attribute_name(:virtual_proofable) %>
+    <% end %>
+  <% end %>
+
   <%= f.field_container :dimensions do %>
       <%= f.label :dimensions %>
       <%= f.text_field :dimensions, class: 'form-control' %>
@@ -40,4 +37,5 @@
       <%= f.label :description %>
       <%= f.text_area :description, class: 'fullwidth', rows: 6 %>
   <% end %>
+
 </div>

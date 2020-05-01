@@ -1,14 +1,14 @@
-<div data-hook="admin_image_form_fields">
-  <div class="four columns alpha">
+<div class="row" data-hook="admin_image_form_fields">
+  <div class="col-4">
     <div data-hook="file" class="field">
       <%= f.label :attachment %><br>
       <%= f.file_field :attachment %>
     </div>
   </div>
-  <div data-hook="alt_text" class="field omega five columns">
-    <%= f.label :alt %><br>
-    <%= f.text_area :alt, rows: 4, class: 'fullwidth' %>
+  <div class="col-4">
+    <div data-hook="alt_text">
+      <%= f.label :alt %><br>
+      <%= f.text_area :alt, rows: 4, class: 'fullwidth' %>
+    </div>
   </div>
 </div>
-
-<div class="clear"></div>

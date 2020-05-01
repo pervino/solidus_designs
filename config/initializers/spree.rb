@@ -1,3 +1,1 @@
-Spree::RoleConfiguration.configure do |config|
-  config.assign_permissions :default, [Spree::Designs::PermissionSets::DefaultCustomer]
-end
+Spree::Config.roles.assign_permissions :default, [SpreeDesigns::PermissionSets::DefaultCustomer]

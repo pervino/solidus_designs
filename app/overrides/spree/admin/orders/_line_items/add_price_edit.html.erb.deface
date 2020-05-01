@@ -1,6 +1,0 @@
-<!-- replace "[data-hook='line-items'] td.line-item-price" -->
-
-<td class="line-item-price line-item-price-show align-center"><%= item.single_money.to_html %></td>
-<td class="line-item-price-edit">
-  <%= number_field_tag :price, item.price, :min => 0, step: 0.01, :class => "line_item_price", :size => 5 %>
-</td>

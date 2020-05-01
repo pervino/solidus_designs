@@ -1,0 +1,2 @@
+set_attributes ".show-method td[colspan='5'], .special_instructions td[colspan='5']"
+attributes colspan: "6"

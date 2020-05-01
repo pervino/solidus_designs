@@ -1,4 +1,4 @@
-json.(@design)
-json.cache! [design] do
-  json.partial! "spree/api/designs/design", design: design
+json.cache! [@design] do
+  json.(@design)
+  json.partial!("spree/api/designs/design", design: @design)
 end
