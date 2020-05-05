@@ -63,6 +63,7 @@ module Spree
       def update
         authorize! :update, @template_design
         if @template_design.update_attributes(permitted_params)
+          @template_design.touch
           respond_with(@template_design, default_template: :show)
         else
           invalid_resource!(@template_design)
