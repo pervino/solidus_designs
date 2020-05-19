@@ -13,10 +13,27 @@ onDeleteDesign = (e) ->
 
 onEditDesign = (e) ->
   e.preventDefault()
-  user_id = $(this).data('user-id')
   design_id = $(e.target).data("design-id")
-  Routine.EditDesign design_id, user_id, () =>
-    window.location.reload()
+  
+  # request to get design
+  # sourceDesign = thing
+  req = Api.Pervino.Design.show design_id, {}
+  req.done (sourceDesign) ->
+    onSave = (markup, url) ->
+      design = {
+        markup: markup,
+        full: url,
+        size: sourceDesign.size,
+        template_id: sourceDesign.template_id,
+        medium: sourceDesign.medium,
+        source_id: sourceDesign.id
+      }
+
+      req = Api.Pervino.Design.update design_id, design, {}
+      req.done (design) ->
+        window.location.reload()
+      
+    designer.init({ design: sourceDesign, sku: settings.sku, onSave }) 
 
 $(document).ready ->
   $('.designs')
