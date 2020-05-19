@@ -20,10 +20,10 @@ module Spree
 
           if @design.size == "custom_drink"
             render_url = LIQUID_PIXEL_URL
-            render_url += `?set=SKU[#{sku_param}]`
-            render_url += `&set=TYPE[#{type_param}]`
-            render_url += `&set=SIZE[#{size_param}]`
-            render_url += `&set=DESIGN_URL[#{design_url_param}]`
+            render_url += `?set=#{sku_param}`
+            render_url += `&set=#{type_param}`
+            render_url += `&set=#{size_param}`
+            render_url += `&set=#{design_url_param}`
             render_url += `&call=url[file:production.chain]`
             render_url += `&sink=format[png]`
             render_url
