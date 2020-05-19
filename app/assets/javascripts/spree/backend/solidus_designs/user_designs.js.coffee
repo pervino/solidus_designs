@@ -21,7 +21,7 @@ onEditDesign = (e) ->
   req.done (sourceDesign) ->
     onSave = (markup, url) ->
       design = {
-        markup: markup,
+        markup: JSON.stringify(markup),
         full: url,
         size: sourceDesign.size,
         template_id: sourceDesign.template_id,
