@@ -25,9 +25,7 @@ onCloneDesign = (e) ->
 onDeleteDesign = (e) ->
   e.preventDefault()
   design_id = $(this).data('design-id')
-  req = Api.Pervino.Design.delete design_id, {}
-  req.done (design) ->
-    window.location.reload()
+  deleteDesign(design_id)
 
 onEditDesign = (e) ->
   e.preventDefault()
