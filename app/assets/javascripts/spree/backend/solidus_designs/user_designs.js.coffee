@@ -33,7 +33,7 @@ onEditDesign = (e) ->
       req.done (design) ->
         window.location.reload()
       
-    designer.init({ design: sourceDesign, sku: settings.sku, onSave }) 
+    designer.init({ design: sourceDesign, sku: null, onSave }) 
 
 $(document).ready ->
   $('.designs')
