@@ -18,17 +18,27 @@ module Spree
         def url
           return nil unless @design
 
-          render_url = LIQUID_PIXEL_URL
-          render_url += "?set=#{sku_param}"
-          render_url += "&set=#{type_param}"
-          # if fill_param != 'blank'
-          #   render_url += "&set=#{fill_param}"
-          # end
-          render_url += "&set=#{size_param}"
-          render_url += "&set=#{design_url_param}"
-          render_url += "&call=#{chain_param}"
-          render_url += "&sink=#{sink_param}"
-          render_url
+          if @design.size == "custom_drink"
+
+            `?set=SKU[#{sku_param}]`
+            `&set=TYPE[#{type_param}]`
+            `&set=SIZE[#{size_param}]`
+            `&set=DESIGN_URL[#{design_url_param}]`
+            `&call=url[file:production.chain]`
+            `&sink=format[png]`
+          else 
+            render_url = LIQUID_PIXEL_URL
+            render_url += "?set=#{sku_param}"
+            render_url += "&set=#{type_param}"
+            # if fill_param != 'blank'
+            #   render_url += "&set=#{fill_param}"
+            # end
+            render_url += "&set=#{size_param}"
+            render_url += "&set=#{design_url_param}"
+            render_url += "&call=#{chain_param}"
+            render_url += "&sink=#{sink_param}"
+            render_url
+          end
         end
 
         private
