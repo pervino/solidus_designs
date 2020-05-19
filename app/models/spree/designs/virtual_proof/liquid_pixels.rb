@@ -27,6 +27,7 @@ module Spree
             render_url += `&call=url[file:production.chain]`
             render_url += `&sink=format[png]`
             render_url
+            binding.pry
           else 
             render_url = LIQUID_PIXEL_URL
             render_url += "?set=#{sku_param}"
