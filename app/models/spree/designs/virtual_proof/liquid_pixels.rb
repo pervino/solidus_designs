@@ -19,13 +19,14 @@ module Spree
           return nil unless @design
 
           if @design.size == "custom_drink"
-
-            `?set=SKU[#{sku_param}]`
-            `&set=TYPE[#{type_param}]`
-            `&set=SIZE[#{size_param}]`
-            `&set=DESIGN_URL[#{design_url_param}]`
-            `&call=url[file:production.chain]`
-            `&sink=format[png]`
+            render_url = LIQUID_PIXEL_URL
+            render_url += `?set=SKU[#{sku_param}]`
+            render_url += `&set=TYPE[#{type_param}]`
+            render_url += `&set=SIZE[#{size_param}]`
+            render_url += `&set=DESIGN_URL[#{design_url_param}]`
+            render_url += `&call=url[file:production.chain]`
+            render_url += `&sink=format[png]`
+            render_url
           else 
             render_url = LIQUID_PIXEL_URL
             render_url += "?set=#{sku_param}"
