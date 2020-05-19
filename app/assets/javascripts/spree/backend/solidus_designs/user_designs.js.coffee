@@ -7,7 +7,7 @@ onCloneDesign = (e) ->
   req.done (sourceDesign) ->
     onSave = (markup, url) ->
       design = {
-        markup: JSON.stringify(markup),
+        markup: markup,
         full: url,
         size: sourceDesign.size,
         template_id: sourceDesign.template_id,
@@ -35,7 +35,7 @@ onEditDesign = (e) ->
   req.done (sourceDesign) ->
     onSave = (markup, url) ->
       design = {
-        markup: JSON.stringify(markup),
+        markup: markup,
         full: url,
         size: sourceDesign.size,
         template_id: sourceDesign.template_id,
