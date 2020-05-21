@@ -37,7 +37,11 @@
             <% end %>
           </td>
           <td>
-            <a class="edit-design" href="#" data-user-id="<%= design.user_id %>" data-design-id="<%= design.id %>">edit</a>
+            <% if design.size != "custom_drink" %>
+              <a class="edit-design" href="#" data-user-id="<%= design.user_id %>" data-design-id="<%= design.id %>">edit</a>
+            <% else %>
+              <a href"#">Non Editable</a>
+            <% end %>
           </td>
           <td>
             <%= design.medium %>

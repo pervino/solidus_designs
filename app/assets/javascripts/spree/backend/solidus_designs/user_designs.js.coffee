@@ -46,22 +46,9 @@ onEditDesign = (e) ->
       req = Api.Pervino.Design.update design_id, design, {}
       req.done (design) ->
         window.location.reload()
-
-    console.log(sourceDesign)
-
-    if sourceDesign.size == "custom_drink"
-      numberOfLines = JSON.parse(
-        sourceDesign.markup
-      ).lines.length
-
-      designer.initSimple({
-        onSave: onSave,
-        lines: numberOfLines,
-        sku: null
-      })
-    else
-      designer.init({ design: sourceDesign, sku: null, onSave }) 
-
+      
+    designer.init({ design: sourceDesign, sku: null, onSave }) 
+    
 $(document).ready ->
   $('.designs')
   .on('click', '.clone-design', onCloneDesign)
