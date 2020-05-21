@@ -48,8 +48,19 @@ onEditDesign = (e) ->
         window.location.reload()
 
     console.log(sourceDesign)
-      
-    designer.init({ design: sourceDesign, sku: null, onSave }) 
+
+    if sourceDesign.size == "custom_drink"
+      numberOfLines = JSON.parse(
+        sourceDesign.markup
+      ).lines.length
+
+      designer.initSimple({
+        onSave: onSave,
+        lines: numberOfLines,
+        sku: this.props.sku
+      })
+    else
+      designer.init({ design: sourceDesign, sku: null, onSave }) 
 
 $(document).ready ->
   $('.designs')
