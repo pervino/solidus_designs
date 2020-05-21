@@ -57,7 +57,7 @@ onEditDesign = (e) ->
       designer.initSimple({
         onSave: onSave,
         lines: numberOfLines,
-        sku: this.props.sku
+        sku: null
       })
     else
       designer.init({ design: sourceDesign, sku: null, onSave }) 
