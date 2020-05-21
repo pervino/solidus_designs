@@ -46,6 +46,8 @@ onEditDesign = (e) ->
       req = Api.Pervino.Design.update design_id, design, {}
       req.done (design) ->
         window.location.reload()
+
+    console.log(sourceDesign)
       
     designer.init({ design: sourceDesign, sku: null, onSave }) 
 
