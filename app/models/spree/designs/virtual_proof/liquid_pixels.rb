@@ -66,7 +66,7 @@ module Spree
         end
 
         def chain_param
-          "url[file:production.chain]"
+          "url[file:product-preview.chain]"
         end
       end
     end
