@@ -11,7 +11,7 @@ module Spree
     has_many :adjustments, as: :source
     has_many :images, -> { order(:position) }, as: :viewable, dependent: :destroy, class_name: "Spree::DesignOptionImage"
     belongs_to :design_configuration, -> { with_deleted }, touch: true
-    belongs_to :spree_designs, inverse_of: :designs
+    belongs_to :design, inverse_of: :design, foreign_key: "spree_design_options_id"
     has_one :product, through: :design_configuration
 
     scope :active, -> { where(active: true) }
