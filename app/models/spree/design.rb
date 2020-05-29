@@ -8,6 +8,8 @@ module Spree
     belongs_to :template, -> { with_deleted }, touch: true
     belongs_to :source, -> { with_deleted }, class_name: "Spree::Design"
 
+    has_one :design_options
+
     after_create :attach_rendering
 
     has_attached_file :rendering, styles: { large: "600x600>", medium: "400x400>", small: "250x250>" }, default_url: :render_url
