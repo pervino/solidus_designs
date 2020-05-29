@@ -8,7 +8,7 @@ module Spree
     belongs_to :template, -> { with_deleted }, touch: true
     belongs_to :source, -> { with_deleted }, class_name: "Spree::Design"
 
-    has_one :spree_design_options, as: :option
+    has_one :spree_design_options
 
     after_create :attach_rendering
 
