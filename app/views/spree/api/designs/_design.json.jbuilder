@@ -1,5 +1,5 @@
 json.cache! [design] do
-  json.(design, :id, :size, :medium, :template_id, :markup, :images, :user_id, :design_option)
+  json.(design, :id, :size, :medium, :template_id, :markup, :images, :user_id)
   json.rendering do
     if design.rendering
       json.small design.rendering.url(:small)
