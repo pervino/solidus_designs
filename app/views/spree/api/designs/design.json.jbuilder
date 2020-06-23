@@ -1,5 +1,5 @@
 json.cache! [design] do
-  json.extract! design, :id, :size, :medium, :template_id, :markup, :images, :user_id
+  json.extract! design, :id, :size, :medium, :template_id, :markup, :images, :user_id, :render_url
 end
 
 json.rendering do |json, design|
