@@ -99,7 +99,7 @@ module Spree
       end
 
       def admin_permitted_attributes
-        permitted_attributes + [:name, :user_id]
+        permitted_attributes + [:name, :user_id, :is_template]
       end
     end
   end
